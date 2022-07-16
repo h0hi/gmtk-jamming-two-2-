@@ -7,11 +7,6 @@ public class CharacterControl : MonoBehaviour
     private Rigidbody rb;
     private Collider coll;
     private Transform camTransform;
-
-    [Header("Look")]
-    [SerializeField] private float sensitivity;
-    [SerializeField] private float bobFrequency;
-    [SerializeField] private float bobAmplitude;
     
     [Header("Movement")]
     [SerializeField] private float topSpeed;
@@ -21,7 +16,6 @@ public class CharacterControl : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpAscendTime;
     [SerializeField] private float jumpFallTime;
-    [SerializeField] private float jumpFloatTime;
     [SerializeField] private float jumpHeight;
 
     private float rotationX;
@@ -32,16 +26,12 @@ public class CharacterControl : MonoBehaviour
     private bool grounded = true;
 
     private void Start() {
-        camTransform = GetComponentInChildren<Camera>().transform;
+        camTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
-        coll = GetComponent<Collider>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false; 
+        coll = GetComponent<Collider>(); 
     }
 
     private void Update() {
-        Look();
         CheckResetJump();
 
         // jump buffer
@@ -49,11 +39,6 @@ public class CharacterControl : MonoBehaviour
 
         moveVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         var movingWithBob = (moveVector.x != 0 || moveVector.y != 0) && grounded;
-
-        var cameraBob = movingWithBob ? Mathf.Sin(Time.time * bobFrequency) * bobAmplitude : 0;
-        var camLocalTarget = Vector3.up * (1.5f + cameraBob) + camTransform.InverseTransformVector(rb.velocity) * 0.05f;
-        var newPos = Vector3.MoveTowards(camTransform.localPosition, camLocalTarget, 2 * Time.deltaTime);
-        camTransform.localPosition = newPos;
     }
 
     private void FixedUpdate() {
@@ -61,16 +46,10 @@ public class CharacterControl : MonoBehaviour
         HandleJump();
     }
 
-    private void Look() {
-        rotationX -= Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
-        rotationY += Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
-        transform.localEulerAngles = Vector3.up * rotationY;
-        camTransform.localEulerAngles = Vector3.right * rotationX;
-    }
-
     private void HorizontalMove() {
-        var input = moveVector.normalized * topSpeed;
-        var relativeVelocity = transform.InverseTransformVector(rb.velocity);
+        var transformedInput = camTransform.TransformDirection(new Vector3(moveVector.normalized.x, 0, moveVector.normalized.y));
+        var input = new Vector2(transformedInput.x, transformedInput.z) * topSpeed;
+        var relativeVelocity = rb.velocity;
         var deltavTarget = new Vector2(input.x - relativeVelocity.x, input.y - relativeVelocity.z);
         
         var deltavCap = topSpeed * Time.fixedDeltaTime / accelerationTime;
@@ -79,7 +58,7 @@ public class CharacterControl : MonoBehaviour
             0,
             Mathf.MoveTowards(0, deltavTarget.y, input.y == 0 ? deltavCapDeceleration : deltavCap));
 
-        rb.AddRelativeForce(deltavRb, ForceMode.VelocityChange);
+        rb.AddForce(deltavRb, ForceMode.VelocityChange);
     }
 
     private void HandleJump() {
@@ -101,11 +80,7 @@ public class CharacterControl : MonoBehaviour
             var gravity = -2 * jumpHeight / (jumpAscendTime * jumpAscendTime);
             
             if (rb.velocity.y < 0) {
-                if (intentionToJump) {
-                    gravity = -2 * jumpHeight / (jumpFloatTime * jumpFloatTime);
-                } else {
-                    gravity = -2 * jumpHeight / (jumpFallTime * jumpFallTime);
-                }
+                gravity = -2 * jumpHeight / (jumpFallTime * jumpFallTime);
             }
 
             rb.AddForce(gravity * rb.mass * Vector3.up);
