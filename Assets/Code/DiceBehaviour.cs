@@ -55,8 +55,8 @@ public class DiceBehaviour : MonoBehaviour
 
         var timeStart = Time.time;
         while (Time.time - timeStart < dissapearTime) {
-            var t = 1 - (Time.time - timeStart) / dissapearTime;
-            transform.localScale = Vector3.one * t;
+            var t = (Time.time - timeStart) / dissapearTime;
+            transform.localScale = Vector3.one * (1 - t * t);
             yield return null;
         }
 
