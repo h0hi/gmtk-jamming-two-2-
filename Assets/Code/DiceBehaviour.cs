@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 public class DiceBehaviour : MonoBehaviour
 {
-    public UnityEvent<int> onLand = new UnityEvent<int>();
+    public UnityEvent<int> onLand = new ();
     [SerializeField] private float forceMul;
     [SerializeField] private float restTimeToDissapear;
     [SerializeField] private float dissapearTime;

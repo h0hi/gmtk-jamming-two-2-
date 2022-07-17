@@ -1133,10 +1133,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60f0dc8d425f0c46b387d75ce1670cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 1729168797}
-  angleFollowTheta: 225
-  angleFollowPhi: -45
-  distanceFollow: 14
+  lockRotationX: 1
+  lockRotationY: 1
+  cameraFollowTransform: {fileID: 1729168797}
+  config:
+    defaultDistance: 10
+    rotationSpeed: 450
+    cameraDistanceDelta: 5
+    focusRadius: 0.4
+    focusCentering: 0.7
+    alignDelay: 3
+    alignSmoothRange: 45
+    obstructionMask:
+      serializedVersion: 2
+      m_Bits: 1
 --- !u!1 &340925520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3056,7 +3066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &883290511
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5163,7 +5173,7 @@ GameObject:
   - component: {fileID: 1729168795}
   - component: {fileID: 1729168794}
   - component: {fileID: 1729168798}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6023,7 +6033,7 @@ GameObject:
   - component: {fileID: 1939901534}
   - component: {fileID: 1939901536}
   - component: {fileID: 1939901535}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

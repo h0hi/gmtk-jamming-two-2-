@@ -4,55 +4,46 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public bool lockRotation;
-    private float rotationX;
-    private float rotationY;
+    public bool lockRotationX;
+    public bool lockRotationY;
+    private float rotationX = 45;
+    private float rotationY = -135;
     private float lastManualRotationTime;
     private float currentDistance;
-    private float skin;
     private Vector3 focusPoint, focusPointLastFrame;
 
-    private Transform focusTransform;
-    private Transform cameraTransform;
-    private Transform viewModelTransform;
-    private Transform playerTransform;
-
-    private const int obstructionMask = -2097153;
     private Vector3 cameraHalfExtends;
 
+    [SerializeField] private Transform cameraFollowTransform;
     [SerializeField] private CameraConfig config;
+
+    private void Start() {
+        cameraHalfExtends.y = Camera.main.nearClipPlane * Mathf.Tan(0.5f * Mathf.Deg2Rad * Camera.main.fieldOfView);
+        cameraHalfExtends.x = cameraHalfExtends.y * Camera.main.aspect;
+        cameraHalfExtends.z = 0;
+
+        currentDistance = config.defaultDistance;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Update() {
 
         UpdateFocusPoint();
 
         Quaternion lookRotation;
-        if (lockRotation && (ManualRotation() || AutomaticRotation())) {
+        if (ManualRotation() || AutomaticRotation()) {
             ConstrainAngles();
             lookRotation = Quaternion.Euler(rotationX, rotationY, 0);
         } else {
-            lookRotation = cameraTransform.localRotation;
+            lookRotation = transform.localRotation;
         }
 
         Vector3 lookDirection = lookRotation * Vector3.forward;
-        Vector3 lookPosition = focusPoint - lookDirection * config.swimDistance;
+        Vector3 lookPosition = focusPoint - lookDirection * SmoothMoveToDistance(config.defaultDistance);
 
-        Vector3 rectOffset = lookDirection * Camera.main.nearClipPlane;
-        Vector3 rectPosition = lookPosition + rectOffset;
-        Vector3 castFrom = focusTransform.position;
-        Vector3 castLine = rectPosition - castFrom;
-        float castDistance = castLine.magnitude;
-        Vector3 castDirection = castLine / castDistance;
-
-        if (Physics.BoxCast(castFrom, cameraHalfExtends, castDirection, out var hit, lookRotation, castDistance, obstructionMask)) {
-            rectPosition = castFrom + castDirection * SmoothMoveToDistance(hit.distance);
-            lookPosition = rectPosition - rectOffset;
-        } else {
-            lookPosition = focusPoint - lookDirection * SmoothMoveToDistance(config.swimDistance);
-        }
-
-        cameraTransform.SetPositionAndRotation(lookPosition, lookRotation);
-        UpdateViewModel();
+        transform.SetPositionAndRotation(lookPosition, lookRotation);
     }
 
     private float SmoothMoveToDistance(float newDistance) {
@@ -63,7 +54,7 @@ public class CameraFollow : MonoBehaviour
     private void UpdateFocusPoint() {
         focusPointLastFrame = focusPoint;
         
-        Vector3 targetPoint = focusTransform.position;
+        Vector3 targetPoint = cameraFollowTransform.position;
 
         if (config.focusRadius > 0) {
             var distance = Vector3.Distance(targetPoint, focusPoint);
@@ -82,7 +73,9 @@ public class CameraFollow : MonoBehaviour
 
     private bool ManualRotation() {
 
-        Vector2 input = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector2 input = new Vector2 (
+            lockRotationY ? 0 : Input.GetAxisRaw("Mouse X"), 
+            lockRotationX ? 0 : Input.GetAxisRaw("Mouse Y"));
         const float e = 0.001f;
         if (input.x < -e || input.x > e || input.y < -e || input.y > e) {
             rotationX -= config.rotationSpeed * Time.unscaledDeltaTime * input.y;
@@ -97,8 +90,9 @@ public class CameraFollow : MonoBehaviour
         if (Time.unscaledTime - lastManualRotationTime < config.alignDelay) {
             return false;
         }
+        if (lockRotationY) return false;
 
-        Vector2 movement = new Vector2(
+        Vector2 movement = new (
             focusPoint.x - focusPointLastFrame.x,
             focusPoint.z - focusPointLastFrame.z
         ); // here we're concerned only about rotating about Y axis, so we look only at movement in XZ plane
@@ -119,20 +113,6 @@ public class CameraFollow : MonoBehaviour
         rotationY = Mathf.MoveTowardsAngle(rotationY, headingAngle, rotationChange);
 
         return true;
-    }
-
-    // Updates this component's transform, as well as player viewmodel
-    private void UpdateViewModel() {
-
-        var headingAngles = new Vector3(rotationX, rotationY);
-        transform.localEulerAngles = Vector3.zero;
-        transform.localPosition = Vector3.down * skin;
-        viewModelTransform.localEulerAngles = Vector3.zero;
-        viewModelTransform.localPosition = transform.localPosition;
-        
-        // Player transform needs only Y input, since view model, which is its child, is rotated on the X axis via animation
-        playerTransform.localEulerAngles = Vector3.up * headingAngles.y;
-        transform.localEulerAngles = Vector3.right * headingAngles.x;
     }
 
     private void ConstrainAngles() {
