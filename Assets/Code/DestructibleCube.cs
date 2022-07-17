@@ -7,7 +7,6 @@ public class DestructibleCube : MonoBehaviour
     [SerializeField] private int health;
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Cube Trigger from " + other.gameObject.name);
         if (other.gameObject.GetComponent<PelletBehaviour>()) {
             OnHit();
         }
@@ -22,6 +21,7 @@ public class DestructibleCube : MonoBehaviour
     }
 
     private void Break() {
+        transform.parent.parent.gameObject.SendMessage("TargetEliminated");
         Destroy(gameObject);
     }
 }

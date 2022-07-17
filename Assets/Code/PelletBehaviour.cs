@@ -10,7 +10,6 @@ public class PelletBehaviour : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Pellet Trigger from " + other.gameObject.name);
         Destroy(gameObject);
     }
 }

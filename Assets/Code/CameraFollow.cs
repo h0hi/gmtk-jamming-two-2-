@@ -34,10 +34,9 @@ public class CameraFollow : MonoBehaviour
         Quaternion lookRotation;
         if (ManualRotation() || AutomaticRotation()) {
             ConstrainAngles();
-            lookRotation = Quaternion.Euler(rotationX, rotationY, 0);
         } else {
-            lookRotation = transform.localRotation;
         }
+        lookRotation = Quaternion.Euler(rotationX, rotationY, 0);
 
         Vector3 lookDirection = lookRotation * Vector3.forward;
         Vector3 lookPosition = focusPoint - lookDirection * SmoothMoveToDistance(config.defaultDistance);
@@ -121,5 +120,15 @@ public class CameraFollow : MonoBehaviour
     private static float GetAngle(Vector2 direction) {
         float angle = Mathf.Acos(direction.y) * Mathf.Rad2Deg;
         return direction.x > 0 ? angle : 360 - angle;
+    }
+
+
+    public void SetRotation(float deg_x, float deg_y) {
+        rotationX = deg_x;
+        rotationY = deg_y;
+    }
+
+    public void SetDistance(float dist) {
+        config.defaultDistance = dist;
     }
 }
