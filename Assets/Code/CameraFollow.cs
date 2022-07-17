@@ -6,8 +6,8 @@ public class CameraFollow : MonoBehaviour
 {
     public bool lockRotationX;
     public bool lockRotationY;
-    private float rotationX = 45;
-    private float rotationY = -135;
+    private float rotationX;
+    private float rotationY;
     private float lastManualRotationTime;
     private float currentDistance;
     private Vector3 focusPoint, focusPointLastFrame;
@@ -21,6 +21,8 @@ public class CameraFollow : MonoBehaviour
         cameraHalfExtends.y = Camera.main.nearClipPlane * Mathf.Tan(0.5f * Mathf.Deg2Rad * Camera.main.fieldOfView);
         cameraHalfExtends.x = cameraHalfExtends.y * Camera.main.aspect;
         cameraHalfExtends.z = 0;
+
+        transform.localRotation = Quaternion.Euler(config.initialAngles.x, config.initialAngles.y, 0);
 
         currentDistance = config.defaultDistance;
 

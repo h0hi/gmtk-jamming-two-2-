@@ -13,6 +13,7 @@ public class DiceBehaviour : MonoBehaviour
     [SerializeField] private float dissapearTime;
     private Rigidbody rb;
     private float timeResting;
+    private bool rested;
 
     private readonly Vector3[] dieNormals = new Vector3[] {
         Vector3.back,
@@ -25,7 +26,6 @@ public class DiceBehaviour : MonoBehaviour
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * forceMul);
     }
 
     private void Update() {
@@ -33,13 +33,14 @@ public class DiceBehaviour : MonoBehaviour
             timeResting += Time.deltaTime;
         }
 
-        if (timeResting > restTimeToDissapear) {
+        if (timeResting > restTimeToDissapear && !rested) {
+            rested = true;
+            InvokeEvent();
             StartCoroutine(Dissapear());
         }
     }
 
-    private IEnumerator Dissapear() {
-        
+    private void InvokeEvent() {
         var maxDot = -2f;
         int id = -1;
         for (int i = 0; i < 6; i++) {
@@ -51,8 +52,11 @@ public class DiceBehaviour : MonoBehaviour
             }
         }
 
+        Debug.Log("Die result is " + (id + 1));
         onLand.Invoke(id + 1);
+    }
 
+    private IEnumerator Dissapear() {
         var timeStart = Time.time;
         while (Time.time - timeStart < dissapearTime) {
             var t = (Time.time - timeStart) / dissapearTime;

@@ -79,8 +79,8 @@ MonoBehaviour:
   onLand:
     m_PersistentCalls:
       m_Calls: []
-  forceMul: 100
-  restTimeToDissapear: 0.5
+  forceMul: 1000
+  restTimeToDissapear: 0.25
   dissapearTime: 0.5
 --- !u!1001 &4854113845380261430
 PrefabInstance:

@@ -5,6 +5,7 @@ public struct CameraConfig {
 
     [Tooltip("Radius of camera sphere (default)")] // 1-10, DefaultValue = 3
     public float defaultDistance;
+    public Vector2 initialAngles;
 
     [Tooltip("Sensitivity (deg/s)")] // 1-180, DefaultValue = 90
     public float rotationSpeed;
