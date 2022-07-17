@@ -25,9 +25,6 @@ public class CameraFollow : MonoBehaviour
         transform.localRotation = Quaternion.Euler(config.initialAngles.x, config.initialAngles.y, 0);
 
         currentDistance = config.defaultDistance;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void Update() {

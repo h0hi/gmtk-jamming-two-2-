@@ -18,8 +18,6 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private float jumpFallTime;
     [SerializeField] private float jumpHeight;
 
-    private float rotationX;
-    private float rotationY;
     private float jumpTimer;
     private bool intentionToJump;
     private Vector2 moveVector;
@@ -28,7 +26,7 @@ public class CharacterControl : MonoBehaviour
     private void Start() {
         camTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
-        coll = GetComponent<Collider>(); 
+        coll = GetComponentInChildren<Collider>(); 
     }
 
     private void Update() {
@@ -38,7 +36,6 @@ public class CharacterControl : MonoBehaviour
         intentionToJump = Input.GetKey(KeyCode.Space);
 
         moveVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        var movingWithBob = (moveVector.x != 0 || moveVector.y != 0) && grounded;
     }
 
     private void FixedUpdate() {
@@ -47,8 +44,9 @@ public class CharacterControl : MonoBehaviour
     }
 
     private void HorizontalMove() {
-        var transformedInput = camTransform.TransformDirection(new Vector3(moveVector.normalized.x, 0, moveVector.normalized.y));
-        var input = new Vector2(transformedInput.x, transformedInput.z) * topSpeed;
+        var v = new Vector3(moveVector.normalized.x, 0, moveVector.normalized.y);
+        v = Quaternion.Euler(0, camTransform.eulerAngles.y, 0) * v;
+        var input = new Vector2(v.x, v.z) * topSpeed;
         var relativeVelocity = rb.velocity;
         var deltavTarget = new Vector2(input.x - relativeVelocity.x, input.y - relativeVelocity.z);
         
