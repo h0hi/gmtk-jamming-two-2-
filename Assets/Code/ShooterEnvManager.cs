@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,6 +39,8 @@ public class ShooterEnvManager : MonoBehaviour
         loadoutParent.transform.SetParent(transform);
         loadoutParent.transform.localPosition = Vector3.up * 1;
 
+        List<Vector3> spawnPositions = new List<Vector3>();
+
         for (int y = 0; y < loadout.blocks.Length; y++) {
             for (int x = 0; x < loadout.blocks[y].Length; x++) {
                 var position = new Vector3(x, 0, y) * tileScale + tileOffset;
@@ -53,8 +56,15 @@ public class ShooterEnvManager : MonoBehaviour
                         Instantiate(destructibleBlockPrefab, position, Quaternion.identity, loadoutParent.transform);
                         remainingTargets++;
                         break;
+                    case 3:
+                        spawnPositions.Add(position);
+                        break;
                 }
             }
+        }
+
+        if (spawnPositions.Count > 0) {
+            playerGameObject.transform.position = spawnPositions[Random.Range(0, spawnPositions.Count)];
         }
     }
 
@@ -82,7 +92,7 @@ public class ShooterEnvManager : MonoBehaviour
             new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},
             new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},
             new int[] { 1, 0, 0, 0, 0, 0, 0, 2, 2, 1},
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 2, 0, 1},
+            new int[] { 1, 0, 3, 0, 0, 0, 0, 2, 0, 1},
             new int[] { 1, 0, 0, 0, 0, 0, 0, 2, 2, 1},
             new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
         };

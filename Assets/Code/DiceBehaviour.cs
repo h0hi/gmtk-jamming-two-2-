@@ -52,7 +52,6 @@ public class DiceBehaviour : MonoBehaviour
             }
         }
 
-        Debug.Log("Die result is " + (id + 1));
         onLand.Invoke(id + 1);
     }
 

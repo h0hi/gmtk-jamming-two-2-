@@ -34,7 +34,6 @@ public class CameraFollow : MonoBehaviour
         Quaternion lookRotation;
         if (ManualRotation() || AutomaticRotation()) {
             ConstrainAngles();
-        } else {
         }
         lookRotation = Quaternion.Euler(rotationX, rotationY, 0);
 
@@ -122,13 +121,28 @@ public class CameraFollow : MonoBehaviour
         return direction.x > 0 ? angle : 360 - angle;
     }
 
-
-    public void SetRotation(float deg_x, float deg_y) {
-        rotationX = deg_x;
-        rotationY = deg_y;
+    public void UpdateRotationAndDistance(float transitionTime, AnimationCurve transitionCurve, float deg_x, float deg_y, float dist) {
+        StartCoroutine(TransitionToNewRotationAndDistance(transitionTime, transitionCurve, deg_x, deg_y, dist));
     }
 
-    public void SetDistance(float dist) {
+    private IEnumerator TransitionToNewRotationAndDistance(float transitionTime, AnimationCurve transitionCurve, float deg_x, float deg_y, float dist) {
+        var t = 0f;
+        var startTime = Time.time;
+
+        var rotX_old = rotationX;
+        var rotY_old = rotationY;
+        var distOld = currentDistance;
         config.defaultDistance = dist;
+
+        while (t < 1) {
+            t = (Time.time - startTime) / transitionTime;
+            var f = transitionCurve.Evaluate(t);
+            
+            rotationX = Mathf.Lerp(rotX_old, deg_x, f);
+            rotationY = Mathf.Lerp(rotY_old, deg_y, f);
+            currentDistance = Mathf.Lerp(distOld, dist, f);
+
+            yield return null;
+        }
     }
 }

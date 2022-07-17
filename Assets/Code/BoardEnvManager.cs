@@ -16,8 +16,8 @@ public class BoardEnvManager : MonoBehaviour
 
     private GameObject playerPipPrefab;
     private GameObject[] pointGameObjects;
-    private List<GameObject> playerPips = new ();
-    private List<int> playerLocation = new ();
+    private readonly List<GameObject> playerPips = new ();
+    private readonly List<int> playerLocation = new ();
     private int playerWhoseTurnItIsNow = -1;
     private GameState gameState = GameState.InEncounter;
 
@@ -81,7 +81,6 @@ public class BoardEnvManager : MonoBehaviour
     }
 
     private void OnUserTurnEnd() {
-        Debug.Log("Player now at " + playerLocation[playerWhoseTurnItIsNow]);
         gameState = GameState.InEncounter;
         onTurnCompleted.Invoke();
     }

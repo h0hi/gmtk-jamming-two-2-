@@ -25,6 +25,15 @@ public class CharacterGun : MonoBehaviour
         }
     }
 
+    private void OnDisable() {
+        // cleanup pellets
+        var pellets = FindObjectsOfType<PelletBehaviour>();
+
+        foreach (var pellet in pellets) {
+            Destroy(pellet.gameObject);
+        }
+    }
+
     private Vector3 GetProjectedMousePoint() {
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(cameraRay, out var hitInfo, Mathf.Infinity, 1)) {

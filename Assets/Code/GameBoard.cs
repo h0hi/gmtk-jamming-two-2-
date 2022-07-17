@@ -9,6 +9,8 @@ public class GameBoard : MonoBehaviour
     private BoardEnvManager boardManager;
     private ShooterEnvManager encounterManager;
     private CameraFollow cameraControl;
+    [SerializeField] private AnimationCurve transitionCurve;
+    [SerializeField] private float transitionTime;
 
     private void Awake() {
         if (main != null) {
@@ -41,11 +43,11 @@ public class GameBoard : MonoBehaviour
     }
 
     private void SetCameraBoard() {
-        cameraControl.SetRotation(30, 0);
-        cameraControl.SetDistance(17);
+        cameraControl.UpdateRotationAndDistance(transitionTime, transitionCurve, 30, 0, 17);
+        LightingControl.ApplyLightingAsset(transitionTime, transitionCurve, 0);
     }
     private void SetCameraEncounter() {
-        cameraControl.SetRotation(80, -45);
-        cameraControl.SetDistance(7);
+        cameraControl.UpdateRotationAndDistance(transitionTime, transitionCurve, 80, -45, 7);
+        LightingControl.ApplyLightingAsset(transitionTime, transitionCurve, 1);
     }
 }
