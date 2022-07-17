@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topSpeed: 7
-  accelerationTime: 0.3
+  accelerationTime: 0.01
   decelerationTime: 0.1
   jumpAscendTime: 1
   jumpFallTime: 1
