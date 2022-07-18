@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour, ITransitionPassenger<Vector3>
 {
     public bool lockRotationX;
     public bool lockRotationY;
@@ -121,28 +121,11 @@ public class CameraFollow : MonoBehaviour
         return direction.x > 0 ? angle : 360 - angle;
     }
 
-    public void UpdateRotationAndDistance(float transitionTime, AnimationCurve transitionCurve, float deg_x, float deg_y, float dist) {
-        StartCoroutine(TransitionToNewRotationAndDistance(transitionTime, transitionCurve, deg_x, deg_y, dist));
-    }
-
-    private IEnumerator TransitionToNewRotationAndDistance(float transitionTime, AnimationCurve transitionCurve, float deg_x, float deg_y, float dist) {
-        var t = 0f;
-        var startTime = Time.time;
-
-        var rotX_old = rotationX;
-        var rotY_old = rotationY;
-        var distOld = currentDistance;
-        config.defaultDistance = dist;
-
-        while (t < 1) {
-            t = (Time.time - startTime) / transitionTime;
-            var f = transitionCurve.Evaluate(t);
-            
-            rotationX = Mathf.Lerp(rotX_old, deg_x, f);
-            rotationY = Mathf.Lerp(rotY_old, deg_y, f);
-            currentDistance = Mathf.Lerp(distOld, dist, f);
-
-            yield return null;
-        }
+    public Vector3 GetTransitionValue() => new Vector3(rotationX, rotationY, currentDistance);
+    public void SetTransitionValue(Vector3 value) {
+        rotationX = value.x;
+        rotationY = value.y;
+        config.defaultDistance = value.z;
+        currentDistance = value.z;
     }
 }

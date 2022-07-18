@@ -29,7 +29,7 @@ public class DiceBehaviour : MonoBehaviour
     }
 
     private void Update() {
-        if (rb.velocity.sqrMagnitude < 0.1f) {
+        if (rb.velocity.sqrMagnitude < 0.1f && rb.angularVelocity.sqrMagnitude < 0.1f) {
             timeResting += Time.deltaTime;
         }
 

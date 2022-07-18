@@ -43,11 +43,31 @@ public class GameBoard : MonoBehaviour
     }
 
     private void SetCameraBoard() {
-        cameraControl.UpdateRotationAndDistance(transitionTime, transitionCurve, 30, 0, 17);
-        LightingControl.ApplyLightingAsset(transitionTime, transitionCurve, 0);
+        TransitionDriver.InitiateTransition(
+            transitionTime,
+            transitionCurve,
+            new Vector3(30, 0, 17),
+            cameraControl
+        );
+        TransitionDriver.InitiateTransition(
+            transitionTime,
+            transitionCurve,
+            new LightingData(5000, 2, 0),
+            LightingControl.main
+        );
     }
     private void SetCameraEncounter() {
-        cameraControl.UpdateRotationAndDistance(transitionTime, transitionCurve, 80, -45, 7);
-        LightingControl.ApplyLightingAsset(transitionTime, transitionCurve, 1);
+        TransitionDriver.InitiateTransition(
+            transitionTime,
+            transitionCurve,
+            new Vector3(80, -45, 7),
+            cameraControl
+        );
+        TransitionDriver.InitiateTransition(
+            transitionTime,
+            transitionCurve,
+            new LightingData(6700, 1.5f, 0.33f),
+            LightingControl.main
+        );
     }
 }
