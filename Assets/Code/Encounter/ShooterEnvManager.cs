@@ -57,6 +57,7 @@ public class ShooterEnvManager : MonoBehaviour
         var indestructibleBlockPrefab = Resources.Load<GameObject>("Encounter/Indestructible Cube");
         var destructibleBlockPrefab = Resources.Load<GameObject>("Encounter/Destructible Cube");
         var enemyGenericPrefab = Resources.Load<GameObject>("Encounter/Enemy Generic");
+        var turretEnemyPrefab = Resources.Load<GameObject>("Encounter/Enemy Turret");
 
         for (int y = 0; y < res.y; y++) {
             for (int x = 0; x < res.x; x++) {
@@ -79,9 +80,17 @@ public class ShooterEnvManager : MonoBehaviour
                         var enemyGo = Instantiate(enemyGenericPrefab, position, Quaternion.identity, loadoutParent.transform);
                         var healthDevice = enemyGo.GetComponent<CharacterHealth>();
                         if (healthDevice) {
+                            remainingTargets++;
                             healthDevice.onDeath.AddListener(TargetEliminated);
                         }
-                        remainingTargets++;
+                        break;
+                    case 5:
+                        var turretGo = Instantiate(turretEnemyPrefab, position, Quaternion.identity, loadoutParent.transform);
+                        healthDevice = turretGo.GetComponent<CharacterHealth>();
+                        if (healthDevice) {
+                            remainingTargets++;
+                            healthDevice.onDeath.AddListener(TargetEliminated);
+                        }
                         break;
                 }
             }
@@ -131,12 +140,12 @@ public class ShooterEnvManager : MonoBehaviour
         public int[][] blocks = new int[][] {
             new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
             new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 4, 0, 1},
+            new int[] { 1, 0, 0, 0, 0, 0, 0, 5, 0, 1},
             new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
             new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},
             new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},
             new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            new int[] { 1, 0, 3, 0, 0, 0, 0, 0, 0, 1},
+            new int[] { 1, 0, 3, 0, 0, 0, 0, 4, 0, 1},
             new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
             new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
         };
