@@ -17,6 +17,7 @@ public class ShooterEnvManager : MonoBehaviour
     private int remainingTargets;
     private GameObject loadoutParent;
     private GameObject playerGameObject;
+    private int selectedLoadoutId;
 
     public UnityEvent onEncounterCompleted;
 
@@ -34,16 +35,22 @@ public class ShooterEnvManager : MonoBehaviour
     }
 
     public void LoadEncounter(int i) {
-        var loadout = loadouts[i];
-        playerGameObject.SetActive(true);
+        var stats = playerGameObject.GetComponent<CharacterStats>();
+        StartCoroutine(stats.RollCharacterStats(CreateLoadout));
+        selectedLoadoutId = i;
+    }
 
+    private void CreateLoadout() {
+
+        var loadout = loadouts[selectedLoadoutId];
+        playerGameObject.SetActive(true);
         remainingTargets = 0;
 
-        loadoutParent = new GameObject("Loadout " + i);
+        loadoutParent = new GameObject("Loadout");
         loadoutParent.transform.SetParent(transform);
         loadoutParent.transform.localPosition = Vector3.up * 1;
 
-        List<Vector3> spawnPositions = new List<Vector3>();
+        List<Vector3> spawnPositions = new ();
         var res = new Vector2(loadout.blocks[0].Length, loadout.blocks.Length);
 
         for (int y = 0; y < res.y; y++) {

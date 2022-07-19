@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterGun : MonoBehaviour
 {
     [SerializeField] private float pelletSpawnDistance;
-    [SerializeField] private float cooldown;
+    [SerializeField] private float cooldown = 1;
 
     private GameObject pelletPrefab;
     private float lastShotTime;
@@ -23,6 +23,11 @@ public class CharacterGun : MonoBehaviour
         if (Input.GetMouseButton(0) && Time.time - lastShotTime > cooldown) {
             ShootPellet(dir);   
         }
+    }
+
+    private void OnEnable() {
+        var stats = GetComponent<CharacterStats>();
+        cooldown = 1f / stats.GetSPS();
     }
 
     private void OnDisable() {

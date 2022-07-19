@@ -26,7 +26,7 @@ public class DieThrower : MonoBehaviour
     }
 
     public void ThrowD6(Vector3 position, Vector3 throwDirection, UnityAction<int> callback) {
-        var dice = Instantiate(d6prefab, position, Quaternion.FromToRotation(Vector3.forward, throwDirection), transform);
+        var dice = Instantiate(d6prefab, position, Quaternion.FromToRotation(Vector3.forward, throwDirection), null);
         dice.GetComponent<DiceBehaviour>().onLand.AddListener(callback);
         dice.GetComponent<Rigidbody>().AddRelativeTorque(UnityEngine.Random.onUnitSphere * dieThrowMaxInitialTorque, ForceMode.Impulse);
         dice.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * dieThrowForce);

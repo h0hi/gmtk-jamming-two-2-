@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterStats))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class CharacterControl : MonoBehaviour
 {
     private Rigidbody rb;
@@ -18,6 +19,7 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private float jumpFallTime;
     [SerializeField] private float jumpHeight;
 
+    private float speed;
     private float jumpTimer;
     private bool intentionToJump;
     private Vector2 moveVector;
@@ -27,6 +29,11 @@ public class CharacterControl : MonoBehaviour
         camTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         coll = GetComponentInChildren<Collider>(); 
+    }
+
+    private void OnEnable() {
+        var stats = GetComponent<CharacterStats>();
+        speed = stats.GetCS() * topSpeed / 6;
     }
 
     private void Update() {
@@ -46,12 +53,12 @@ public class CharacterControl : MonoBehaviour
     private void HorizontalMove() {
         var v = new Vector3(moveVector.normalized.x, 0, moveVector.normalized.y);
         v = Quaternion.Euler(0, camTransform.eulerAngles.y, 0) * v;
-        var input = new Vector2(v.x, v.z) * topSpeed;
+        var input = new Vector2(v.x, v.z) * speed;
         var relativeVelocity = rb.velocity;
         var deltavTarget = new Vector2(input.x - relativeVelocity.x, input.y - relativeVelocity.z);
         
-        var deltavCap = topSpeed * Time.fixedDeltaTime / accelerationTime;
-        var deltavCapDeceleration = topSpeed * Time.fixedDeltaTime / decelerationTime;
+        var deltavCap = speed * Time.fixedDeltaTime / accelerationTime;
+        var deltavCapDeceleration = speed * Time.fixedDeltaTime / decelerationTime;
         var deltavRb = new Vector3(Mathf.MoveTowards(0, deltavTarget.x, input.x == 0 ? deltavCapDeceleration : deltavCap),
             0,
             Mathf.MoveTowards(0, deltavTarget.y, input.y == 0 ? deltavCapDeceleration : deltavCap));
