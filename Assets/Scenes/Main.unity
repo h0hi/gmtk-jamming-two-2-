@@ -587,21 +587,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5378485853423841415, guid: 9669ace880da9cd4282018e1ef37f690,
-        type: 3}
-      propertyPath: topSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5378485853423841415, guid: 9669ace880da9cd4282018e1ef37f690,
-        type: 3}
-      propertyPath: accelerationTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5378485853423841415, guid: 9669ace880da9cd4282018e1ef37f690,
-        type: 3}
-      propertyPath: decelerationTime
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9669ace880da9cd4282018e1ef37f690, type: 3}
 --- !u!1 &209896029

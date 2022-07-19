@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6171568795529296011}
   - component: {fileID: 6171568795529296012}
   - component: {fileID: 6171568795529296013}
+  - component: {fileID: 6531902845362346600}
   m_Layer: 0
   m_Name: model
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6531902845362346600
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171568795529296008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1111112, y: 1.111111, z: 1.111111}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6171568795714094204
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,8 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6171568795714094207}
-  - component: {fileID: 2405876752060680246}
-  - component: {fileID: 5826137212691366853}
+  - component: {fileID: 2352044680350587257}
   m_Layer: 0
   m_Name: Destructible Cube
   m_TagString: Untagged
@@ -117,7 +130,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2405876752060680246
+--- !u!114 &2352044680350587257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,20 +139,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6171568795714094204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b31928d96c394b43a295eacdac7e084, type: 3}
+  m_Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
---- !u!65 &5826137212691366853
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6171568795714094204}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  hitPoints: 3
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6171568795714094204}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

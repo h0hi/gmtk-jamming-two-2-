@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +7,6 @@ using UnityEngine.Events;
 public class DiceBehaviour : MonoBehaviour
 {
     public UnityEvent<int> onLand = new ();
-    [SerializeField] private float forceMul;
     [SerializeField] private float restTimeToDissapear;
     [SerializeField] private float dissapearTime;
     private Rigidbody rb;

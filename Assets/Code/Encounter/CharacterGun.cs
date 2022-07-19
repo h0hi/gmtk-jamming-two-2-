@@ -8,21 +8,25 @@ public class CharacterGun : MonoBehaviour
     private GameObject pelletPrefab;
     private float lastShotTime;
 
+    // driven values
+    [HideInInspector] public Vector3 shootDirection;
+
+    // driven method
+    public void TryShoot() {
+        if (Time.time - lastShotTime > cooldown) {
+            lastShotTime = Time.time;
+            var pelletObj = Instantiate(pelletPrefab, transform.position + shootDirection * pelletSpawnDistance, Quaternion.FromToRotation(Vector3.forward, shootDirection), null);
+            pelletObj.layer = gameObject.layer;
+        }
+    }
+
     private void Start() {
-        pelletPrefab = Resources.Load<GameObject>("Top Down Env/pellet");
+        pelletPrefab = Resources.Load<GameObject>("Encounter/pellet");
     }
 
     private void Update() {
-        var position = transform.position;
-        var cursor = GetProjectedMousePoint();
-        var dir = (cursor - position).normalized;
-        dir.y = 0;
-        var angle = Mathf.Atan2(dir.x, dir.z);
+        var angle = Mathf.Atan2(shootDirection.x, shootDirection.z);
         transform.eulerAngles = angle * Mathf.Rad2Deg * Vector3.up;
-        
-        if (Input.GetMouseButton(0) && Time.time - lastShotTime > cooldown) {
-            ShootPellet(dir);   
-        }
     }
 
     private void OnEnable() {
@@ -35,20 +39,8 @@ public class CharacterGun : MonoBehaviour
         var pellets = FindObjectsOfType<PelletBehaviour>();
 
         foreach (var pellet in pellets) {
-            Destroy(pellet.gameObject);
+            if (pellet != null)
+                Destroy(pellet.gameObject);
         }
-    }
-
-    private Vector3 GetProjectedMousePoint() {
-        var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(cameraRay, out var hitInfo, Mathf.Infinity, 1)) {
-            return hitInfo.point;
-        }
-        return cameraRay.origin;    
-    }
-
-    private void ShootPellet(Vector3 dir) {
-        lastShotTime = Time.time;
-        Instantiate(pelletPrefab, transform.position + dir * pelletSpawnDistance, Quaternion.FromToRotation(Vector3.forward, dir), null);
     }
 }

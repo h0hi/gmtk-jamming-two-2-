@@ -11,9 +11,7 @@ public class ShooterEnvManager : MonoBehaviour
     [SerializeField] private AnimationCurve loadoutRiseCurve;
 
     private ShooterEnvLoadout[] loadouts;
-    private EncounterBoardController boardController;    
-    private GameObject indestructibleBlockPrefab;
-    private GameObject destructibleBlockPrefab;
+    private EncounterBoardController boardController;
     private int remainingTargets;
     private GameObject loadoutParent;
     private GameObject playerGameObject;
@@ -22,8 +20,6 @@ public class ShooterEnvManager : MonoBehaviour
     public UnityEvent onEncounterCompleted;
 
     private void Start() {
-        indestructibleBlockPrefab = Resources.Load<GameObject>("Top Down Env/Indestructible Cube");
-        destructibleBlockPrefab = Resources.Load<GameObject>("Top Down Env/Destructible Cube");
         loadouts = new ShooterEnvLoadout[] {
             new ShooterEnvLoadout()
         };
@@ -44,6 +40,11 @@ public class ShooterEnvManager : MonoBehaviour
 
         var loadout = loadouts[selectedLoadoutId];
         playerGameObject.SetActive(true);
+        var characterHealthDevice = playerGameObject.GetComponent<CharacterHealth>();
+        if (characterHealthDevice) {
+            characterHealthDevice.onDeath.AddListener(OnCharacterDeath);
+        }
+
         remainingTargets = 0;
 
         loadoutParent = new GameObject("Loadout");
@@ -52,6 +53,10 @@ public class ShooterEnvManager : MonoBehaviour
 
         List<Vector3> spawnPositions = new ();
         var res = new Vector2(loadout.blocks[0].Length, loadout.blocks.Length);
+
+        var indestructibleBlockPrefab = Resources.Load<GameObject>("Encounter/Indestructible Cube");
+        var destructibleBlockPrefab = Resources.Load<GameObject>("Encounter/Destructible Cube");
+        var enemyGenericPrefab = Resources.Load<GameObject>("Encounter/Enemy Generic");
 
         for (int y = 0; y < res.y; y++) {
             for (int x = 0; x < res.x; x++) {
@@ -66,10 +71,17 @@ public class ShooterEnvManager : MonoBehaviour
                         break;
                     case 2:
                         Instantiate(destructibleBlockPrefab, position, Quaternion.identity, loadoutParent.transform);
-                        remainingTargets++;
                         break;
                     case 3:
                         spawnPositions.Add(position);
+                        break;
+                    case 4:
+                        var enemyGo = Instantiate(enemyGenericPrefab, position, Quaternion.identity, loadoutParent.transform);
+                        var healthDevice = enemyGo.GetComponent<CharacterHealth>();
+                        if (healthDevice) {
+                            healthDevice.onDeath.AddListener(TargetEliminated);
+                        }
+                        remainingTargets++;
                         break;
                 }
             }
@@ -77,6 +89,10 @@ public class ShooterEnvManager : MonoBehaviour
 
         if (spawnPositions.Count > 0) {
             playerGameObject.transform.position = spawnPositions[Random.Range(0, spawnPositions.Count)];
+        }
+
+        if (remainingTargets == 0) {
+            Invoke(nameof(ExitEncounter), 5 + loadoutRiseTime);
         }
 
         var newBoardSize = new Vector3(res.x, 1, res.y) * tileScale;
@@ -88,18 +104,26 @@ public class ShooterEnvManager : MonoBehaviour
         );
     }
 
-    private void UnloadEncounter() {
+    private void UnloadLoadout() {
         playerGameObject.SetActive(false);
         Destroy(loadoutParent);
     }
 
-    public void TargetEliminated() {
+    private void OnCharacterDeath() {
+        ExitEncounter();
+    }
+
+    private void TargetEliminated() {
         remainingTargets--;
 
         if (remainingTargets == 0) {
-            UnloadEncounter();
-            onEncounterCompleted.Invoke();
+            ExitEncounter();
         }
+    }
+
+    public void ExitEncounter() {
+        UnloadLoadout();
+        onEncounterCompleted.Invoke();
     }
 
     [System.Serializable]
@@ -107,7 +131,7 @@ public class ShooterEnvManager : MonoBehaviour
         public int[][] blocks = new int[][] {
             new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
             new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            new int[] { 1, 0, 0, 0, 0, 0, 0, 4, 0, 1},
             new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
             new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},
             new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},

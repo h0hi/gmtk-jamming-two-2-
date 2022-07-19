@@ -2,12 +2,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterStats))]
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Collider))]
 public class CharacterControl : MonoBehaviour
 {
     private Rigidbody rb;
     private Collider coll;
-    private Transform camTransform;
     
     [Header("Movement")]
     [SerializeField] private float topSpeed;
@@ -21,12 +19,20 @@ public class CharacterControl : MonoBehaviour
 
     private float speed;
     private float jumpTimer;
-    private bool intentionToJump;
-    private Vector2 moveVector;
     private bool grounded = true;
 
+    // driven values
+    [HideInInspector] public bool intentionToJump;
+    [HideInInspector] public Vector2 moveVector;
+
+    // driven methods
+    public void ResetVerticalVelocity() {
+        var velocity = rb.velocity;
+        velocity.y = 0;
+        rb.velocity = velocity;
+    }
+
     private void Start() {
-        camTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         coll = GetComponentInChildren<Collider>(); 
     }
@@ -36,30 +42,20 @@ public class CharacterControl : MonoBehaviour
         speed = stats.GetCS() * topSpeed / 6;
     }
 
-    private void Update() {
-        CheckResetJump();
-
-        // jump buffer
-        intentionToJump = Input.GetKey(KeyCode.Space);
-
-        moveVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    }
-
     private void FixedUpdate() {
         HorizontalMove();
         HandleJump();
     }
 
     private void HorizontalMove() {
-        var v = new Vector3(moveVector.normalized.x, 0, moveVector.normalized.y);
-        v = Quaternion.Euler(0, camTransform.eulerAngles.y, 0) * v;
-        var input = new Vector2(v.x, v.z) * speed;
+        var input = moveVector * speed;
         var relativeVelocity = rb.velocity;
         var deltavTarget = new Vector2(input.x - relativeVelocity.x, input.y - relativeVelocity.z);
         
         var deltavCap = speed * Time.fixedDeltaTime / accelerationTime;
         var deltavCapDeceleration = speed * Time.fixedDeltaTime / decelerationTime;
-        var deltavRb = new Vector3(Mathf.MoveTowards(0, deltavTarget.x, input.x == 0 ? deltavCapDeceleration : deltavCap),
+        var deltavRb = new Vector3(
+            Mathf.MoveTowards(0, deltavTarget.x, input.x == 0 ? deltavCapDeceleration : deltavCap),
             0,
             Mathf.MoveTowards(0, deltavTarget.y, input.y == 0 ? deltavCapDeceleration : deltavCap));
 
@@ -89,14 +85,6 @@ public class CharacterControl : MonoBehaviour
             }
 
             rb.AddForce(gravity * rb.mass * Vector3.up);
-        }
-    }
-
-    private void CheckResetJump() {
-        if (Input.GetKeyUp(KeyCode.Space)) {
-            var velocity = rb.velocity;
-            velocity.y = 0;
-            rb.velocity = velocity;
         }
     }
 

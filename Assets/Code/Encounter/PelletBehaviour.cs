@@ -10,6 +10,10 @@ public class PelletBehaviour : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        var characterHealth = other.GetComponentInParent<CharacterHealth>();
+        if (characterHealth) {
+            characterHealth.Damage();
+        }
         Destroy(gameObject);
     }
 }

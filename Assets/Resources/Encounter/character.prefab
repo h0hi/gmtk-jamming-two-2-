@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5378485853423841415}
   - component: {fileID: 5621763114958034421}
   - component: {fileID: 3584596396295729971}
+  - component: {fileID: 7076643050519333868}
+  - component: {fileID: 4165181393014522720}
   m_Layer: 2
   m_Name: character
   m_TagString: Player
@@ -64,12 +66,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010097badfbc4bd4ca85a1700f4c17f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topSpeed: 10
-  accelerationTime: 0.3
-  decelerationTime: 0.1
+  topSpeed: 4
+  accelerationTime: 0
+  decelerationTime: 0
   jumpAscendTime: 0.4
   jumpFallTime: 0.2
   jumpHeight: 2
+  intentionToJump: 0
+  moveVector: {x: 0, y: 0}
 --- !u!114 &5621763114958034421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 0.33
+  shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &3584596396295729971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +101,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01866e4223424a48acab2e2909bd320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitpoints: 1
+  shotsPerSecond: 1
+  characterSpeed: 1
+--- !u!114 &7076643050519333868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378485853423841408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d139ed7d0d6d710498586dd3c5476cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4165181393014522720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378485853423841408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 0
+  hitImmunityTime: 1
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8109463116480471525
 GameObject:
   m_ObjectHideFlags: 0
