@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBoard : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    public static GameBoard main;
+    public static GameController main;
 
     private BoardEnvManager boardManager;
     private ShooterEnvManager encounterManager;
