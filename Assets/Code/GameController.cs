@@ -34,9 +34,12 @@ public class GameController : MonoBehaviour
 
         var encounterNames = new string[] {
             "Narrow",
-            "SquareOff"
+            "SquareOff",
+            "Siege",
+            "Labyrinth"
         };
 
+        Random.InitState(System.DateTime.Now.GetHashCode());
         var name = encounterNames[Random.Range(0, encounterNames.Length)];
 
         encounterManager.LoadEncounter(name);

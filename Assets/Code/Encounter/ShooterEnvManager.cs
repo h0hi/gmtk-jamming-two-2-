@@ -43,7 +43,7 @@ public class ShooterEnvManager : MonoBehaviour
 
         remainingTargets = 0;
 
-        loadoutParent = new GameObject("Loadout");
+        loadoutParent = new GameObject("Loadout " + selectedLoadoutName);
         loadoutParent.transform.SetParent(transform);
         loadoutParent.transform.localPosition = Vector3.up * 1;
 
