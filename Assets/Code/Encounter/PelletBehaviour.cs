@@ -14,6 +14,12 @@ public class PelletBehaviour : MonoBehaviour
         if (characterHealth) {
             characterHealth.Damage();
         }
+        if (!other.isTrigger) {
+            Evaporate();
+        }
+    }
+
+    public void Evaporate() {
         Destroy(gameObject);
     }
 }

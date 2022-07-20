@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 1
+  pelletPrefab: {fileID: 0}
   shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &3482836040588007169
 MonoBehaviour:
@@ -218,10 +219,10 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7007321382348589136}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 3482836040588007169}
+        m_TargetAssemblyTypeName: CharacterHealth, Assembly-CSharp
+        m_MethodName: DestroyGameObject
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

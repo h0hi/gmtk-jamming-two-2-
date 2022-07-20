@@ -26,4 +26,8 @@ public class CharacterHealth : MonoBehaviour
             onDeath.Invoke();
         }
     }
+
+    public void DestroyGameObject() {
+        Destroy(gameObject);
+    }
 }

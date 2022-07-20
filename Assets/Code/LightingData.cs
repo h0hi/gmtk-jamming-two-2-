@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu]
 public class LightingData
 {
     public float temperature;

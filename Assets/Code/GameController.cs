@@ -31,7 +31,15 @@ public class GameController : MonoBehaviour
     }
 
     private void TurnOverCallback() {
-        encounterManager.LoadEncounter(0);
+
+        var encounterNames = new string[] {
+            "Narrow",
+            "SquareOff"
+        };
+
+        var name = encounterNames[Random.Range(0, encounterNames.Length)];
+
+        encounterManager.LoadEncounter(name);
         SetCameraEncounter();
     }
 

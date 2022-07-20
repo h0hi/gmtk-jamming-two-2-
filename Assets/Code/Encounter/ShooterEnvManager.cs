@@ -6,23 +6,18 @@ using UnityEngine.Events;
 public class ShooterEnvManager : MonoBehaviour
 {
     [SerializeField] private float tileScale;
-    [SerializeField] private Vector3 tileOffset;
     [SerializeField] private float loadoutRiseTime;
     [SerializeField] private AnimationCurve loadoutRiseCurve;
 
-    private ShooterEnvLoadout[] loadouts;
     private EncounterBoardController boardController;
     private int remainingTargets;
     private GameObject loadoutParent;
     private GameObject playerGameObject;
-    private int selectedLoadoutId;
+    private string selectedLoadoutName;
 
     public UnityEvent onEncounterCompleted;
 
     private void Start() {
-        loadouts = new ShooterEnvLoadout[] {
-            new ShooterEnvLoadout()
-        };
 
         boardController = new EncounterBoardController(transform);
 
@@ -30,15 +25,16 @@ public class ShooterEnvManager : MonoBehaviour
         playerGameObject.SetActive(false);
     }
 
-    public void LoadEncounter(int i) {
+    public void LoadEncounter(string name) {
         var stats = playerGameObject.GetComponent<CharacterStats>();
         StartCoroutine(stats.RollCharacterStats(CreateLoadout));
-        selectedLoadoutId = i;
+        selectedLoadoutName = name;
     }
 
     private void CreateLoadout() {
 
-        var loadout = loadouts[selectedLoadoutId];
+        var loadout = Resources.Load<EncounterAsset>("Encounter/Encounter Assets/" + selectedLoadoutName);
+
         playerGameObject.SetActive(true);
         var characterHealthDevice = playerGameObject.GetComponent<CharacterHealth>();
         if (characterHealthDevice) {
@@ -52,7 +48,8 @@ public class ShooterEnvManager : MonoBehaviour
         loadoutParent.transform.localPosition = Vector3.up * 1;
 
         List<Vector3> spawnPositions = new ();
-        var res = new Vector2(loadout.blocks[0].Length, loadout.blocks.Length);
+        var res = new Vector2(loadout.GetHeight(), loadout.GetLength());
+        var tileOffset = res * -0.5f + tileScale * 0.5f * Vector2.one;
 
         var indestructibleBlockPrefab = Resources.Load<GameObject>("Encounter/Indestructible Cube");
         var destructibleBlockPrefab = Resources.Load<GameObject>("Encounter/Destructible Cube");
@@ -61,9 +58,9 @@ public class ShooterEnvManager : MonoBehaviour
 
         for (int y = 0; y < res.y; y++) {
             for (int x = 0; x < res.x; x++) {
-                var position = new Vector3(x, 0, y) * tileScale + tileOffset;
+                var position = new Vector3(x + tileOffset.x, 0, y + tileOffset.y) * tileScale;
 
-                int tileType = loadout.blocks[y][x];
+                int tileType = loadout.GetTile(y, x);
                 switch (tileType) {
                     default:
                         break;
@@ -78,18 +75,18 @@ public class ShooterEnvManager : MonoBehaviour
                         break;
                     case 4:
                         var enemyGo = Instantiate(enemyGenericPrefab, position, Quaternion.identity, loadoutParent.transform);
-                        var healthDevice = enemyGo.GetComponent<CharacterHealth>();
-                        if (healthDevice) {
+                        var enemyHealthDevice = enemyGo.GetComponent<CharacterHealth>();
+                        if (enemyHealthDevice) {
                             remainingTargets++;
-                            healthDevice.onDeath.AddListener(TargetEliminated);
+                            enemyHealthDevice.onDeath.AddListener(TargetEliminated);
                         }
                         break;
                     case 5:
                         var turretGo = Instantiate(turretEnemyPrefab, position, Quaternion.identity, loadoutParent.transform);
-                        healthDevice = turretGo.GetComponent<CharacterHealth>();
-                        if (healthDevice) {
+                        var turretHealthDevice = turretGo.GetComponent<CharacterHealth>();
+                        if (turretHealthDevice) {
                             remainingTargets++;
-                            healthDevice.onDeath.AddListener(TargetEliminated);
+                            turretHealthDevice.onDeath.AddListener(TargetEliminated);
                         }
                         break;
                 }
@@ -104,6 +101,8 @@ public class ShooterEnvManager : MonoBehaviour
             Invoke(nameof(ExitEncounter), 5 + loadoutRiseTime);
         }
 
+        Debug.Log("Eliminate " + remainingTargets + " targets!");
+
         var newBoardSize = new Vector3(res.x, 1, res.y) * tileScale;
         TransitionDriver.InitiateTransition(
             loadoutRiseTime,
@@ -115,6 +114,15 @@ public class ShooterEnvManager : MonoBehaviour
 
     private void UnloadLoadout() {
         playerGameObject.SetActive(false);
+
+        // cleanup pellets
+        var pellets = FindObjectsOfType<PelletBehaviour>();
+
+        foreach (var pellet in pellets) {
+            if (pellet != null)
+                Destroy(pellet.gameObject);
+        }
+
         Destroy(loadoutParent);
     }
 
@@ -124,6 +132,7 @@ public class ShooterEnvManager : MonoBehaviour
 
     private void TargetEliminated() {
         remainingTargets--;
+        Debug.Log(remainingTargets + " targets remaining!");
 
         if (remainingTargets == 0) {
             ExitEncounter();
@@ -135,29 +144,15 @@ public class ShooterEnvManager : MonoBehaviour
         onEncounterCompleted.Invoke();
     }
 
-    [System.Serializable]
-    public class ShooterEnvLoadout {
-        public int[][] blocks = new int[][] {
-            new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 5, 0, 1},
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},
-            new int[] { 1, 0, 0, 0, 2, 2, 0, 0, 0, 1},
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            new int[] { 1, 0, 3, 0, 0, 0, 0, 4, 0, 1},
-            new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
-        };
-    }
-
     private class EncounterBoardController : ITransitionPassenger<Vector3> {
         
         private readonly Transform plane;
         private readonly Transform[] walls;
+        private readonly Material planeMaterial;
         
         public EncounterBoardController(Transform tf) {
             plane = tf.GetChild(0);
+            planeMaterial = plane.GetComponent<MeshRenderer>().material;
             walls = new Transform[] { 
                 tf.GetChild(1),
                 tf.GetChild(2),
@@ -173,6 +168,7 @@ public class ShooterEnvManager : MonoBehaviour
 
         public void SetTransitionValue(Vector3 size) {
             plane.localScale = size * 0.1f;
+            planeMaterial.mainTextureScale = new Vector2(size.x, size.z);
 
             walls[0].localPosition = size.z * 0.5f * Vector3.back;
             walls[0].localScale = new Vector3(size.x + 0.1f, 0.1f, 0.1f);
