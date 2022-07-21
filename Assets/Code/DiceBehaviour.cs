@@ -36,6 +36,11 @@ public class DiceBehaviour : MonoBehaviour
             InvokeEvent();
             StartCoroutine(Dissapear());
         }
+
+        if (transform.position.y < -10) {
+            transform.position = Vector3.up * 10;
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        }
     }
 
     private void InvokeEvent() {
