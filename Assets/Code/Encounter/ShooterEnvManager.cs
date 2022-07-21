@@ -15,6 +15,7 @@ public class ShooterEnvManager : MonoBehaviour
     private GameObject playerGameObject;
     private string selectedLoadoutName;
 
+    public UnityEvent<EncounterAsset> onEncounterLoaded;
     public UnityEvent onEncounterCompleted;
 
     private void Start() {
@@ -103,7 +104,11 @@ public class ShooterEnvManager : MonoBehaviour
 
         Debug.Log("Eliminate " + remainingTargets + " targets!");
 
-        var newBoardSize = new Vector3(res.x, 1, res.y) * tileScale;
+        onEncounterLoaded.Invoke(loadout);
+    }
+
+    public void DoAppearBoard(EncounterAsset encounter) {
+        var newBoardSize = new Vector3(encounter.GetHeight(), 1, encounter.GetLength()) * tileScale;
         TransitionDriver.InitiateTransition(
             loadoutRiseTime,
             loadoutRiseCurve,
@@ -142,6 +147,11 @@ public class ShooterEnvManager : MonoBehaviour
     public void ExitEncounter() {
         UnloadLoadout();
         onEncounterCompleted.Invoke();
+    }
+
+    public Vector2 GetBoardSize() {
+        var scale = transform.GetChild(0).localScale * 10;
+        return new Vector2(scale.x, scale.z);
     }
 
     private class EncounterBoardController : ITransitionPassenger<Vector3> {

@@ -39,11 +39,13 @@ public class GameController : MonoBehaviour
             "Labyrinth"
         };
 
-        Random.InitState(System.DateTime.Now.GetHashCode());
-        var name = encounterNames[Random.Range(0, encounterNames.Length)];
+        var rnd = new System.Random(System.DateTime.Now.GetHashCode());
+        var name = encounterNames[rnd.Next(encounterNames.Length)];
 
         encounterManager.LoadEncounter(name);
-        SetCameraEncounter();
+        encounterManager.onEncounterLoaded.AddListener(SetCameraEncounter);
+        encounterManager.onEncounterLoaded.AddListener(encounterManager.DoAppearBoard);
+        SetCameraDiceThrow();
     }
 
     private void EncounterOverCallback() {
@@ -65,11 +67,31 @@ public class GameController : MonoBehaviour
             LightingControl.main
         );
     }
-    private void SetCameraEncounter() {
+    private void SetCameraEncounter(EncounterAsset encounter) {
+
+        var encounterBoardSize = new Vector2(encounter.GetHeight(), encounter.GetLength());
+        var camAngles = new Vector3(80, -45);
+        camAngles.z = CameraFollow.CalculateMinDistanceForCamera(camAngles, encounterBoardSize);
+
         TransitionDriver.InitiateTransition(
             transitionTime,
             transitionCurve,
-            new Vector3(80, -45, 7),
+            camAngles,
+            cameraControl
+        );
+        TransitionDriver.InitiateTransition(
+            transitionTime,
+            transitionCurve,
+            new LightingData(6700, 1.5f, 0.33f),
+            LightingControl.main
+        );
+    }
+
+    private void SetCameraDiceThrow() {
+        TransitionDriver.InitiateTransition(
+            transitionTime,
+            transitionCurve,
+            new Vector3(80, 0, 7),
             cameraControl
         );
         TransitionDriver.InitiateTransition(

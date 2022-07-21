@@ -68,6 +68,12 @@ public class CameraFollow : MonoBehaviour, ITransitionPassenger<Vector3>
         }
     }
 
+    public static float CalculateMinDistanceForCamera(Vector2 camAngles, Vector2 planeSize) {
+        var frustumHeight = Mathf.Sqrt(planeSize.x * planeSize.x + planeSize.y * planeSize.y);
+        frustumHeight *= Mathf.Sin(camAngles.x * Mathf.Deg2Rad);
+        return frustumHeight * 0.5f / Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+    } 
+
     private bool ManualRotation() {
 
         Vector2 input = new Vector2 (
