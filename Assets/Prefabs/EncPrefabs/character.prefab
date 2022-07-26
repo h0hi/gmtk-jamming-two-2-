@@ -88,6 +88,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 0.33
+  pelletPrefab: {fileID: 4310244522467198719, guid: dd68e3a01e8bf56469a14f95a2931f42,
+    type: 3}
   shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &3584596396295729971
 MonoBehaviour:
@@ -101,9 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01866e4223424a48acab2e2909bd320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 1
-  shotsPerSecond: 1
-  characterSpeed: 1
+  hitpoints: -1
+  shotsPerSecond: -1
+  characterSpeed: -1
 --- !u!114 &7076643050519333868
 MonoBehaviour:
   m_ObjectHideFlags: 0

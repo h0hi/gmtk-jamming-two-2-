@@ -11,7 +11,6 @@ public class EnemyCharacterDriver : MonoBehaviour
     private void Start() {
         movementDevice = GetComponent<CharacterControl>();
         gunDevice = GetComponent<CharacterGun>();
-        gunDevice.pelletPrefab = Resources.Load<GameObject>("Encounter/Destructible Pellet");
 
         target = GameObject.FindWithTag("Player").transform;
         movementDevice.intentionToJump = false;

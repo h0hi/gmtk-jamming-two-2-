@@ -200,7 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 1
-  pelletPrefab: {fileID: 0}
+  pelletPrefab: {fileID: 6413001331616385367, guid: 3ea227259645d6a4992dbbfea725980c,
+    type: 3}
   shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &3482836040588007169
 MonoBehaviour:

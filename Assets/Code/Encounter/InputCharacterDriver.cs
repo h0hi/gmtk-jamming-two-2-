@@ -13,7 +13,6 @@ public class InputCharacterDriver : MonoBehaviour
         movementDevice = GetComponent<CharacterControl>();
         movementDevice.intentionToJump = false;
         gunDevice = GetComponent<CharacterGun>();
-        gunDevice.pelletPrefab = Resources.Load<GameObject>("Encounter/pellet");
     }
 
     private void Update() {

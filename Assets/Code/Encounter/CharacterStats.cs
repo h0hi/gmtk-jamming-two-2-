@@ -24,7 +24,7 @@ public class CharacterStats : MonoBehaviour
             yield return null;
         }
 
-        callback();
+        callback?.Invoke();
     }
     
     private void SetHP (int value) => hitpoints = value;

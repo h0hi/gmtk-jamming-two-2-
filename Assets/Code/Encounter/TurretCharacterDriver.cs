@@ -12,9 +12,6 @@ public class TurretCharacterDriver : MonoBehaviour
     
     private void Start() {
         gunDevices = GetComponents<CharacterGun>();
-
-        gunDevices[0].pelletPrefab = Resources.Load<GameObject>("Encounter/Destructible Pellet");
-        gunDevices[1].pelletPrefab = Resources.Load<GameObject>("Encounter/Indestructible Pellet");
         
         target = GameObject.FindWithTag("Player").transform;
         shotNumber = 0;

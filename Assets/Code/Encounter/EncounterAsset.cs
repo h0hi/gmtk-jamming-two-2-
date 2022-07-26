@@ -1,42 +1,71 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-[System.Serializable]
-[CreateAssetMenu]
-public class EncounterAsset : ScriptableObject
+public class EncounterAsset : MonoBehaviour, ITransitionPassenger<float>
 {
-    public TileRow[] tilemap;
+    private int threatCount;
+    public UnityEvent onEncounterFinished = new ();
 
-    public int GetHeight() {
-        if (tilemap != null && tilemap.Length > 0 && tilemap[0] != null) return tilemap[0].tiles.Length;
-        return 0;
-    }
-    public int GetLength() {
-        if (tilemap != null) return tilemap.Length;
-        return 0;
-    }
+    public void Load() {
+        AnnounceEncounterEvent(EncounterEventType.Load);
+        var playerGameObject = GetComponentInChildren<InputCharacterDriver>().gameObject;
+        playerGameObject.GetComponent<CharacterHealth>().onDeath.AddListener(OnPlayerDeath);
 
-    public void SetSize(int l, int h) {
-        tilemap = new TileRow[l];
-        for (int i = 0; i < l; i++) {
-            var tilerow = new TileRow();
-            tilerow.SetSize(h);
-            tilemap[i] = tilerow;
+        transform.localPosition = Vector3.down * 1.1f;
+
+        threatCount = 0;
+        // enumerate threats
+        foreach (var threat in GetComponentsInChildren<EnemyCharacterDriver>()) {
+            threatCount++;
+            threat.gameObject.GetComponent<CharacterHealth>().onDeath.AddListener(ThreatEliminated);
+        }
+        foreach (var threat in GetComponentsInChildren<TurretCharacterDriver>()) {
+            threatCount++;
+            threat.gameObject.GetComponent<CharacterHealth>().onDeath.AddListener(ThreatEliminated);
         }
     }
 
-    public int GetTile(int x, int y) {
-        return tilemap[x].tiles[y];
-    }
-    public void SetTile(int x, int y, int value) {
-        tilemap[x].tiles[y] = value;
+    public void Begin() {
+        transform.localPosition = Vector3.zero;
+        AnnounceEncounterEvent(EncounterEventType.Begin);
     }
 
-    [System.Serializable]
-    public class TileRow {
-        public int[] tiles;
+    private void AnnounceEncounterEvent(EncounterEventType eventType) {
+        System.Array.ForEach(GetComponentsInChildren<IEncounterEventListener>(), (i) => i.OnEncounterEvent(eventType));
+    }
 
-        public void SetSize(int l) {
-            tiles = new int[l];
+    private void OnPlayerDeath() {
+        Debug.Log("OnPlayerDeath -> ExitEncounter");
+        ExitEncounter();
+    }
+
+    private void ThreatEliminated() {
+        threatCount--;
+        Debug.Log(threatCount + " targets remaining!");
+
+        if (threatCount == 0) {
+            Debug.Log("ThreatEliminated -> ExitEncounter");
+            ExitEncounter();
         }
     }
+
+    private void ExitEncounter() => onEncounterFinished.Invoke();
+
+    public float GetTransitionValue()
+    {
+        return transform.localPosition.y;
+    }
+
+    public void SetTransitionValue(float value)
+    {
+        transform.localPosition = Vector3.up * value;
+    }
+
+    public Vector2 GetBoardSize() => new Vector2(transform.GetChild(0).localScale.x, transform.GetChild(0).localScale.z) * 10;
+}
+
+public enum EncounterEventType {
+    Load,
+    Begin,
+    End
 }

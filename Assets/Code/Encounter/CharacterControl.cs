@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterStats))]
 [RequireComponent(typeof(Rigidbody))]
-public class CharacterControl : MonoBehaviour
+public class CharacterControl : MonoBehaviour, IEncounterEventListener
 {
     private Rigidbody rb;
     private Collider coll;
@@ -91,5 +91,17 @@ public class CharacterControl : MonoBehaviour
     private bool CheckGrounded() {
         const float window = 0.05f;
         return Physics.Raycast(new Ray(new Vector3(coll.bounds.center.x, coll.bounds.min.y + window * 0.5f, coll.bounds.center.z), Vector3.down), window, 1);
+    }
+
+    public void OnEncounterEvent(EncounterEventType eventType)
+    {
+        switch (eventType) {
+            case EncounterEventType.Load:
+                enabled = false;
+                break;
+            case EncounterEventType.Begin:
+                enabled = true;
+                break;
+        }
     }
 }

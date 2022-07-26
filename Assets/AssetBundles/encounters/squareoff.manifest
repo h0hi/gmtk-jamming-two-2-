@@ -1,0 +1,66 @@
+ManifestFileVersion: 0
+CRC: 1211683755
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9bfb7546f37e3e4b4c49bc4dff0ef478
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 75b5fe8c69d972c1dfabadf218697d9c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 010097badfbc4bd4ca85a1700f4c17f6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b01866e4223424a48acab2e2909bd320, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d139ed7d0d6d710498586dd3c5476cda, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6527905e4393c194ebe68af5d847d8a9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 18723469cf75c144c94f2f964c085542, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8015aa6ce56a68f41824528ce01668d4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bc179e4034a506246b5adb8ec6d7c4c6, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.ArgumentCache
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentListenerMode
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent
+Assets:
+- Assets/Prefabs/Encounters/SquareOff.prefab
+Dependencies:
+- C:/Users/eterna dark/Documents/GitHub/gmtk-jamming-two-2-/Assets/AssetBundles/encounterassets

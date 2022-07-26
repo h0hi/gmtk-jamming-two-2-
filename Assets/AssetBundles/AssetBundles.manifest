@@ -1,0 +1,11 @@
+ManifestFileVersion: 0
+CRC: 3915282713
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: encounterassets
+      Dependencies: {}
+    Info_1:
+      Name: encounters/squareoff
+      Dependencies:
+        Dependency_0: encounterassets
