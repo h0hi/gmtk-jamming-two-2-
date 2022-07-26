@@ -16,9 +16,9 @@ public class CharacterStats : MonoBehaviour
         shotsPerSecond = -1;
         characterSpeed = -1;
 
-        DieThrower.main.ThrowD6(throwPos - throwRight * 2, throwForward, SetHP);
-        DieThrower.main.ThrowD6(throwPos, throwForward, SetSPS);
-        DieThrower.main.ThrowD6(throwPos + throwRight * 2, throwForward, SetCS);
+        DieThrower.main.ThrowD6(throwPos - throwRight * 2, throwForward, SetHP, Color.red * 2);
+        DieThrower.main.ThrowD6(throwPos, throwForward, SetSPS, Color.blue * 2);
+        DieThrower.main.ThrowD6(throwPos + throwRight * 2, throwForward, SetCS, Color.green * 2);
 
         while (hitpoints == -1 || shotsPerSecond == -1 || characterSpeed == -1) {
             yield return null;

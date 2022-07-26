@@ -25,10 +25,11 @@ public class DieThrower : MonoBehaviour
         d6prefab = Resources.Load<GameObject>("die");
     }
 
-    public void ThrowD6(Vector3 position, Vector3 throwDirection, UnityAction<int> callback) {
+    public void ThrowD6(Vector3 position, Vector3 throwDirection, UnityAction<int> callback, Color color) {
         var dice = Instantiate(d6prefab, position, Quaternion.FromToRotation(Vector3.forward, throwDirection), null);
         dice.GetComponent<DiceBehaviour>().onLand.AddListener(callback);
         dice.GetComponent<Rigidbody>().AddRelativeTorque(UnityEngine.Random.onUnitSphere * dieThrowMaxInitialTorque, ForceMode.Impulse);
         dice.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * dieThrowForce);
+        dice.GetComponentInChildren<MeshRenderer>().material.SetColor("_EmissionColor", color);
     }
 }

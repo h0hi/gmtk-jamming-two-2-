@@ -11,6 +11,7 @@ public class BoardEnvManager : MonoBehaviour
     [SerializeField] private GameObject pointPrefab;
     [SerializeField] private float playerHopTime;
     [SerializeField] private float playerHopHeight;
+    [SerializeField] private Color boardDieColor;
 
     private LineRenderer lineRenderer;
 
@@ -34,7 +35,7 @@ public class BoardEnvManager : MonoBehaviour
     private void Update() {
         if (Input.GetKey(KeyCode.E) && gameState == GameState.WaitingForInput) {
             gameState = GameState.InCinematic;
-            DieThrower.main.ThrowD6(Camera.main.transform.position, Camera.main.transform.forward, MovePlayer);
+            DieThrower.main.ThrowD6(Camera.main.transform.position, Camera.main.transform.forward, MovePlayer, boardDieColor);
         }
     }
 

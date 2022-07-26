@@ -23,7 +23,7 @@ public class Shield : MonoBehaviour, IEncounterEventListener
     }
 
     private void Update() {
-        mat.mainTextureOffset = Time.time * scrollSpeed * Vector2.down;
+        mat.mainTextureOffset = Time.time * scrollSpeed * Vector2.up;
     }
 
     private void CheckDisable() {
