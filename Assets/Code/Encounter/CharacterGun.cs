@@ -28,11 +28,6 @@ public class CharacterGun : MonoBehaviour, IEncounterEventListener
         transform.eulerAngles = angle * Mathf.Rad2Deg * Vector3.up;
     }
 
-    private void OnEnable() {
-        var stats = GetComponent<CharacterStats>();
-        cooldown = 1f / stats.GetSPS();
-    }
-
     public void OnEncounterEvent(EncounterEventType eventType)
     {
         switch (eventType) {
@@ -41,6 +36,8 @@ public class CharacterGun : MonoBehaviour, IEncounterEventListener
                 break;
             case EncounterEventType.Begin:
                 enabled = true;
+                var stats = GetComponent<CharacterStats>();
+                cooldown = 1f / stats.GetSPS();
                 break;
         }
     }

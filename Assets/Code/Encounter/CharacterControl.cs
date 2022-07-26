@@ -37,11 +37,6 @@ public class CharacterControl : MonoBehaviour, IEncounterEventListener
         coll = GetComponentInChildren<Collider>(); 
     }
 
-    private void OnEnable() {
-        var stats = GetComponent<CharacterStats>();
-        speed = stats.GetCS() * topSpeed / 6;
-    }
-
     private void FixedUpdate() {
         HorizontalMove();
         HandleJump();
@@ -101,6 +96,8 @@ public class CharacterControl : MonoBehaviour, IEncounterEventListener
                 break;
             case EncounterEventType.Begin:
                 enabled = true;
+                var stats = GetComponent<CharacterStats>();
+                speed = stats.GetCS() * topSpeed / 6;
                 break;
         }
     }
