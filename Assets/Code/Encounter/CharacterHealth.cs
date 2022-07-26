@@ -3,7 +3,8 @@ using UnityEngine.Events;
 
 public class CharacterHealth : MonoBehaviour
 {
-    [SerializeField] private int hitPoints;
+    private int hitPoints;
+    public int HitPoints { get { return hitPoints; } }
     [SerializeField] private float hitImmunityTime;
     public UnityEvent onDeath; 
     private float lastTimeDamaged;

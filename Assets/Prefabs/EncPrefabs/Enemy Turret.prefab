@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3484280177919541127}
   - component: {fileID: 3484280177919541176}
   - component: {fileID: 3484280177919541177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 13067788374517603}
   - component: {fileID: 3484280177937196265}
   - component: {fileID: 2617464987784120763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 3
   hitImmunityTime: 0
   onDeath:
     m_PersistentCalls:

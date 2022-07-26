@@ -17,6 +17,7 @@ public class CharacterGun : MonoBehaviour, IEncounterEventListener
             lastShotTime = Time.time;
             var pelletObj = Instantiate(pelletPrefab, transform.position + shootDirection * pelletSpawnDistance, Quaternion.FromToRotation(Vector3.forward, shootDirection), null);
             pelletObj.layer = gameObject.layer;
+            pelletObj.transform.GetChild(0).gameObject.layer = gameObject.layer;
             return true;
         }
         return false;
