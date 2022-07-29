@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3393476637
+CRC: 1276715302
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9f4e36bacd5e3b264c6df4f9e72161c6
+    Hash: 400c2bf2bebf1579c3ca960fb803d565
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5ec94f7f2f79d8a6bfe910739a690728
+    Hash: d00cce819dbb8106a2f657f248e2b46b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -40,13 +40,15 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 18723469cf75c144c94f2f964c085542, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 724c7409ee20bc44aa474a070375fbee, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 8015aa6ce56a68f41824528ce01668d4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: e508019f865554a4dbb7a7b2942d9fdb, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 80c7c6fad0fba2d4c8792ce393dce1e2, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 724c7409ee20bc44aa474a070375fbee, type: 3}
+  Script: {fileID: 11500000, guid: a9f0eec49ad7a6a4ea1bdd23b67470cf, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 135
@@ -74,4 +76,5 @@ Assets:
 - Assets/Prefabs/EncPrefabs/Shielded Enemy.prefab
 - Assets/Prefabs/EncPrefabs/Portal.prefab
 - Assets/Prefabs/EncPrefabs/Destructible Pellet.prefab
+- Assets/Prefabs/EncPrefabs/Damage Cube.prefab
 Dependencies: []
