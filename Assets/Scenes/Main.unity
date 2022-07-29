@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 1.3176471, g: 1.3176471, b: 1.3176471, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.21584193, g: 0.27032685, b: 0.4056604, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 5b303ac35c6a5274589302942bf4b39a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.18154866, g: 0.22718975, b: 0.3074077, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -907,14 +907,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
-  m_LocalRotation: {x: 0.27059805, y: -0.6532815, z: 0.27059805, w: 0.6532815}
+  m_LocalRotation: {x: 0.3355088, y: -0.44437563, z: 0.18406641, w: 0.8099899}
   m_LocalPosition: {x: -0.78680116, y: 13.659106, z: -10.249857}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 308302711}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: -57.5, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2339,6 +2339,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounterBundleNames:
   - shieldambush
+  - siege
+  - squareoff
+  - turretgate
   loadedEncounter: {fileID: 0}
 --- !u!1 &1125139773
 GameObject:

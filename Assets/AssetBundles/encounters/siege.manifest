@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3145791019
+CRC: 4241355533
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ab18031e97aa98a1af8b197f9000c383
+    Hash: 5876d94b9a74a6f72b2050f2a84b36e5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 3f33ca9f164a96c8b3964e799be7de23
+    Hash: b3e718c1b5a482692564f24304fd9c94
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -44,12 +44,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 8015aa6ce56a68f41824528ce01668d4, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: e508019f865554a4dbb7a7b2942d9fdb, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: bc179e4034a506246b5adb8ec6d7c4c6, type: 3}
 - Class: 115
-  Script: {instanceID: 0}
-- Class: 135
   Script: {instanceID: 0}
 - Class: 136
   Script: {instanceID: 0}
@@ -63,6 +59,6 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.UnityEvent
 Assets:
-- Assets/Prefabs/Encounters/SquareOff.prefab
+- Assets/Prefabs/Encounters/Siege.prefab
 Dependencies:
 - C:/Users/eterna dark/Documents/GitHub/gmtk-jamming-two-2-/Assets/AssetBundles/encounterassets

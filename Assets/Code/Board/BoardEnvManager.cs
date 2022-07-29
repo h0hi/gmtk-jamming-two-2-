@@ -8,13 +8,13 @@ public class BoardEnvManager : MonoBehaviour
 {
     [SerializeField] private Vector3[] boardPoints;
     [SerializeField] private bool boardLooping;
-    [SerializeField] private GameObject pointPrefab;
     [SerializeField] private float playerHopTime;
     [SerializeField] private float playerHopHeight;
     [SerializeField] private Color boardDieColor;
 
     private LineRenderer lineRenderer;
 
+    private GameObject pointPrefab;
     private GameObject playerPipPrefab;
     private GameObject[] pointGameObjects;
     private readonly List<GameObject> playerPips = new ();
@@ -26,7 +26,10 @@ public class BoardEnvManager : MonoBehaviour
 
     private void Start() {
         lineRenderer = GetComponent<LineRenderer>();
-        playerPipPrefab = Resources.Load<GameObject>("player_pip");
+        
+        var boardAssetBundle = AssetBundle.LoadFromFile(System.IO.Path.Join(Application.dataPath, "AssetBundles", "boardassets"));
+        playerPipPrefab = boardAssetBundle.LoadAsset<GameObject>("player_pip");
+        pointPrefab = boardAssetBundle.LoadAsset<GameObject>("board_point");
 
         DrawBoard();
         AddPlayer();

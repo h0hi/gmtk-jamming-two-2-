@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3145791019
+CRC: 225696125
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ab18031e97aa98a1af8b197f9000c383
+    Hash: 14691007d3c1363459ff010892cc7d43
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 3f33ca9f164a96c8b3964e799be7de23
+    Hash: 6a40ed01cb2067442c2345646af12556
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -42,14 +42,10 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 18723469cf75c144c94f2f964c085542, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 8015aa6ce56a68f41824528ce01668d4, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: e508019f865554a4dbb7a7b2942d9fdb, type: 3}
+  Script: {fileID: 11500000, guid: 724c7409ee20bc44aa474a070375fbee, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: bc179e4034a506246b5adb8ec6d7c4c6, type: 3}
 - Class: 115
-  Script: {instanceID: 0}
-- Class: 135
   Script: {instanceID: 0}
 - Class: 136
   Script: {instanceID: 0}
@@ -63,6 +59,6 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.UnityEvent
 Assets:
-- Assets/Prefabs/Encounters/SquareOff.prefab
+- Assets/Prefabs/Encounters/TurretGate.prefab
 Dependencies:
 - C:/Users/eterna dark/Documents/GitHub/gmtk-jamming-two-2-/Assets/AssetBundles/encounterassets

@@ -46,7 +46,6 @@ public class CharacterControl : MonoBehaviour, IEncounterEventListener
 
     private void FixedUpdate() {
         HorizontalMove();
-        HandleJump();
     }
 
     private void HorizontalMove() {

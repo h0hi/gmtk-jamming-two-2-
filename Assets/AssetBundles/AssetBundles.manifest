@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3711362059
+CRC: 3280696788
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -13,3 +13,17 @@ AssetBundleManifest:
       Name: encounters/shieldambush
       Dependencies:
         Dependency_0: encounterassets
+    Info_3:
+      Name: encounters/siege
+      Dependencies:
+        Dependency_0: encounterassets
+    Info_4:
+      Name: encounters/turretgate
+      Dependencies:
+        Dependency_0: encounterassets
+    Info_5:
+      Name: boardassets
+      Dependencies: {}
+    Info_6:
+      Name: die
+      Dependencies: {}
