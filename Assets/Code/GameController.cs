@@ -29,16 +29,14 @@ public class GameController : MonoBehaviour
     // persistent listener of BoardEnvController.onTurnCompleted
     public void TurnOverCallback() {
         encounterLoader.LoadEncounter();
-        StartCoroutine(encounterLoader.loadedEncounter.GetComponentInChildren<InputCharacterDriver>().gameObject.GetComponent<CharacterStats>().RollCharacterStats(DiceThrowOverCallback));
-        
-        SetCameraDiceThrow();
+        SetCameraEncounter(encounterLoader.loadedEncounter.GetComponent<EncounterAsset>());
+        Invoke(nameof(DiceThrowOverCallback), transitionCurve.keys[transitionCurve.length - 1].time);
     }
 
     private void DiceThrowOverCallback() {
         var encounter = encounterLoader.loadedEncounter.GetComponent<EncounterAsset>();
         encounter.Begin();
         encounter.onEncounterFinished.AddListener(EncounterOverCallback);
-        SetCameraEncounter(encounter);
     }
 
     private void EncounterOverCallback() {

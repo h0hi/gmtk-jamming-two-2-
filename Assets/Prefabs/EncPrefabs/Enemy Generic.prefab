@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitpoints: 1
   shotsPerSecond: 1
-  characterSpeed: 1
+  characterSpeed: 3
 --- !u!114 &2582927042672673117
 MonoBehaviour:
   m_ObjectHideFlags: 0

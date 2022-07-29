@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 674559684
+CRC: 241604935
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fd891555e4b26f58ae6e13f12e96f61a
+    Hash: d6bed135392e1f69b8463e88cfa904cd
   TypeTreeHash:
     serializedVersion: 2
     Hash: 09ff7bc9476208724d2414a6091c83bf
@@ -49,7 +49,11 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.ArgumentCache
+- AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentListenerMode
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.UnityEvent
 Assets:
