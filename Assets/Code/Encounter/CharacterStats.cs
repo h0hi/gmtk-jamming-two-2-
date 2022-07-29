@@ -1,11 +1,11 @@
-using System.Collections;
+ using System.Collections;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
     [SerializeField] private int hitpoints = 1;
-    [SerializeField] private int shotsPerSecond = 1;
-    [SerializeField] private int characterSpeed = 1;
+    [SerializeField] private float shotsPerSecond = 1;
+    [SerializeField] private float characterSpeed = 1;
 
     public IEnumerator RollCharacterStats(System.Action callback) {
         var throwPos = Camera.main.transform.position;
@@ -31,6 +31,6 @@ public class CharacterStats : MonoBehaviour
     private void SetSPS (int value) => shotsPerSecond = value;
     private void SetCS (int value) => characterSpeed = value;
     public int GetHP() => hitpoints;
-    public int GetSPS() => shotsPerSecond;
-    public int GetCS() => characterSpeed;
+    public float GetSPS() => shotsPerSecond;
+    public float GetCS() => characterSpeed;
 }

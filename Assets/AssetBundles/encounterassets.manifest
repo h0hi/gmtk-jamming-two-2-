@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 942213197
+CRC: 3079704117
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 333b64f567766fca125ef650911baa48
+    Hash: 713b0592795baf8916e93975e3d5aa8d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b0f38751e6066eb31bc20e8c2c343b4e
+    Hash: ff7f48e72d4e1fd611a48dcbc2a4072d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -44,9 +44,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 8015aa6ce56a68f41824528ce01668d4, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 80c7c6fad0fba2d4c8792ce393dce1e2, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: e508019f865554a4dbb7a7b2942d9fdb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 80c7c6fad0fba2d4c8792ce393dce1e2, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 135
@@ -71,5 +71,6 @@ Assets:
 - Assets/Prefabs/EncPrefabs/character.prefab
 - Assets/Prefabs/EncPrefabs/Destructible Cube.prefab
 - Assets/Prefabs/EncPrefabs/Force Shield.prefab
+- Assets/Prefabs/EncPrefabs/Shielded Enemy.prefab
 - Assets/Prefabs/EncPrefabs/Destructible Pellet.prefab
 Dependencies: []

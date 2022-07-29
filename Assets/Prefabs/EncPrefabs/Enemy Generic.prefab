@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 1
+  topAngularSpeed: 45
   pelletPrefab: {fileID: 6413001331616385367, guid: 3ea227259645d6a4992dbbfea725980c,
     type: 3}
   shootDirection: {x: 0, y: 0, z: 0}
@@ -215,7 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 3
   hitImmunityTime: 0
   onDeath:
     m_PersistentCalls:

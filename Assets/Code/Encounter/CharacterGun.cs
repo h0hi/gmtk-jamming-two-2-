@@ -4,7 +4,7 @@ public class CharacterGun : MonoBehaviour, IEncounterEventListener
 {
     [SerializeField] private float pelletSpawnDistance;
     [SerializeField] private float cooldown = 1;
-
+    [SerializeField] private float topAngularSpeed;
     [SerializeField] private GameObject pelletPrefab;
     private float lastShotTime;
 
@@ -24,8 +24,10 @@ public class CharacterGun : MonoBehaviour, IEncounterEventListener
     }
 
     private void Update() {
-        var angle = Mathf.Atan2(shootDirection.x, shootDirection.z);
-        transform.eulerAngles = angle * Mathf.Rad2Deg * Vector3.up;
+        var targetRadians = Mathf.Atan2(shootDirection.x, shootDirection.z);
+        var currentRadians = Mathf.Atan2(transform.forward.x, transform.forward.z);
+        var deltaDegrees = Mathf.MoveTowardsAngle(currentRadians * Mathf.Rad2Deg, targetRadians * Mathf.Rad2Deg, topAngularSpeed * Time.deltaTime);
+        transform.eulerAngles = deltaDegrees * Vector3.up;
     }
 
     public void OnEncounterEvent(EncounterEventType eventType)

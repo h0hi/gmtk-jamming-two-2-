@@ -9,16 +9,23 @@ public class EncounterLoader : MonoBehaviour
     [HideInInspector] public GameObject loadedEncounter;
 
     private void Start() {
-        rnd = new System.Random(System.DateTime.Now.GetHashCode());
         AssetBundle.LoadFromFile(Path.Join(Application.dataPath, "AssetBundles", "encounterassets"));
     }
 
     public void LoadEncounter() {
+        rnd = new System.Random(System.DateTime.Now.GetHashCode());
         var name = encounterBundleNames[rnd.Next(encounterBundleNames.Length)];
         var encounterAssetBundlesFolder = Path.Join(Application.dataPath, "AssetBundles", "encounters");
         encounterBundle = AssetBundle.LoadFromFile(Path.Join(encounterAssetBundlesFolder, name));
 
-        loadedEncounter = Instantiate(encounterBundle.LoadAsset<GameObject>(name), transform);
+        var prefab = encounterBundle.LoadAsset<GameObject>(name);
+        if (prefab == null) {
+            prefab = encounterBundle.LoadAsset<GameObject>(name + " Variant");
+        }
+        if (prefab == null) {
+            Debug.LogError("Could not find encounter object in bundle! Make sure the encounter parent has the bundle\'s name");
+        }
+        loadedEncounter = Instantiate(prefab, transform);
         loadedEncounter.GetComponent<EncounterAsset>().Load();
     }
 

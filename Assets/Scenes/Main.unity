@@ -1305,7 +1305,7 @@ MonoBehaviour:
     type: 3}
   playerHopTime: 0.25
   playerHopHeight: 2
-  boardDieColor: {r: 0.54457605, g: 0.7924528, b: 0.47397646, a: 1}
+  boardDieColor: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 1}
   onTurnCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -2339,6 +2339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounterBundleNames:
   - squareoff
+  - shieldambush
   loadedEncounter: {fileID: 0}
 --- !u!1 &1125139773
 GameObject:

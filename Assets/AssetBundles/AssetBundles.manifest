@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 4062724250
+CRC: 3974887167
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -7,5 +7,9 @@ AssetBundleManifest:
       Dependencies: {}
     Info_1:
       Name: encounters/squareoff
+      Dependencies:
+        Dependency_0: encounterassets
+    Info_2:
+      Name: encounters/shieldambush
       Dependencies:
         Dependency_0: encounterassets
