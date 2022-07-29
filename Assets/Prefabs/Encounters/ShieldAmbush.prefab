@@ -150,6 +150,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shielded Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 162461231546370929, guid: 1747da81ec808d14daff825568766669,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 162461231546370930, guid: 1747da81ec808d14daff825568766669,
         type: 3}
       propertyPath: m_RootOrder
@@ -303,6 +308,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shielded Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 162461231546370929, guid: 1747da81ec808d14daff825568766669,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 162461231546370930, guid: 1747da81ec808d14daff825568766669,
         type: 3}

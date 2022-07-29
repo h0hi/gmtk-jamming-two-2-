@@ -12,17 +12,22 @@ public class EnemyCharacterDriver : MonoBehaviour
         movementDevice = GetComponent<CharacterControl>();
         gunDevice = GetComponent<CharacterGun>();
 
-        target = GameObject.FindWithTag("Player").transform;
         movementDevice.intentionToJump = false;
     }
 
     private void Update() {
+
+        if (target == null) {
+            target = GameObject.FindWithTag("Player").transform;
+        }
+
         var direction = (target.position - transform.position).normalized;
         direction.y = 0;
         var move = new Vector2(direction.x, direction.z);
-        movementDevice.moveVector = move.normalized;
+        movementDevice.moveDirection = move.normalized;
 
-        gunDevice.shootDirection = direction;
+        movementDevice.lookRadians = Mathf.Atan2(direction.x, direction.z);
+        
         gunDevice.TryShoot();
     }
 }

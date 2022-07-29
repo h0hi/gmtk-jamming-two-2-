@@ -1,8 +1,10 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterControl))]
 [RequireComponent(typeof(CharacterGun))]
 public class TurretCharacterDriver : MonoBehaviour
 {
+    private CharacterControl movementDevice;
     private CharacterGun[] gunDevices;
     private Transform target;
 
@@ -11,6 +13,7 @@ public class TurretCharacterDriver : MonoBehaviour
     [SerializeField] private float gunSwitchCooldown;
     
     private void Start() {
+        movementDevice = GetComponent<CharacterControl>();
         gunDevices = GetComponents<CharacterGun>();
         
         target = GameObject.FindWithTag("Player").transform;
@@ -22,7 +25,7 @@ public class TurretCharacterDriver : MonoBehaviour
         direction.y = 0;
         
         var activeGun = gunDevices[shotNumber % 2];
-        activeGun.shootDirection = direction;
+        movementDevice.lookRadians = Mathf.Atan2(direction.x, direction.z);
         if (Time.time - lastGunSwitchTime > gunSwitchCooldown && activeGun.TryShoot()) {
             shotNumber++;
             lastGunSwitchTime = Time.time;

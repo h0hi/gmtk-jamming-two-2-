@@ -20,14 +20,15 @@ public class InputCharacterDriver : MonoBehaviour
         var moveVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         var v = new Vector3(moveVector.normalized.x, 0, moveVector.normalized.y);
         v = Quaternion.Euler(0, camTransform.eulerAngles.y, 0) * v;
-        movementDevice.moveVector = new Vector2(v.x, v.z);
+        movementDevice.moveDirection = new Vector2(v.x, v.z);
 
         // drive gun device
         var position = transform.position;
         var cursor = GetProjectedMousePoint();
-        var dir = (cursor - position).normalized;
+        var dir = cursor - position;
         dir.y = 0;
-        gunDevice.shootDirection = dir;
+        dir = dir.normalized;
+        movementDevice.lookRadians = Mathf.Atan2(dir.x, dir.z);
         
         if (Input.GetMouseButton(0)) {
             gunDevice.TryShoot();   

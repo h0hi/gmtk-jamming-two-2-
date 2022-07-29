@@ -107,8 +107,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3484280177937196267}
-  - component: {fileID: 3484280177937196277}
   - component: {fileID: 3484280177937196278}
+  - component: {fileID: 1190306816627242228}
   - component: {fileID: 3484280177937196264}
   - component: {fileID: 13067788374517603}
   - component: {fileID: 3484280177937196265}
@@ -136,21 +136,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3484280177937196277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3484280177937196268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01866e4223424a48acab2e2909bd320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitpoints: 3
-  shotsPerSecond: 2
-  characterSpeed: 0
 --- !u!54 &3484280177937196278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,8 +150,30 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1190306816627242228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484280177937196268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010097badfbc4bd4ca85a1700f4c17f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topSpeed: 0
+  accelerationTime: 0
+  decelerationTime: 0
+  topAngularSpeed: 180
+  jumpAscendTime: 0
+  jumpFallTime: Infinity
+  jumpHeight: 0
+  intentionToJump: 0
+  moveDirection: {x: 0, y: 0}
+  lookRadians: 0
 --- !u!114 &3484280177937196264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,10 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 1
-  topAngularSpeed: 0
   pelletPrefab: {fileID: 6413001331616385367, guid: 3ea227259645d6a4992dbbfea725980c,
     type: 3}
-  shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &13067788374517603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,10 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 1
-  topAngularSpeed: 45
   pelletPrefab: {fileID: 1936919963601993296, guid: c189edfbe46f2ae4da62fdf06594a909,
     type: 3}
-  shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &3484280177937196265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoints: 3
   hitImmunityTime: 0
   onDeath:
     m_PersistentCalls:

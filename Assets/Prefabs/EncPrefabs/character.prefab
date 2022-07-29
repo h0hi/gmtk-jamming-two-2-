@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 5378485853423841410}
   - component: {fileID: 5378485853423841415}
   - component: {fileID: 5621763114958034421}
-  - component: {fileID: 3584596396295729971}
-  - component: {fileID: 7076643050519333868}
   - component: {fileID: 4165181393014522720}
-  m_Layer: 2
+  - component: {fileID: 7076643050519333868}
+  m_Layer: 6
   m_Name: character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -69,11 +68,13 @@ MonoBehaviour:
   topSpeed: 4
   accelerationTime: 0
   decelerationTime: 0
+  topAngularSpeed: 360
   jumpAscendTime: 0.4
-  jumpFallTime: 0.2
+  jumpFallTime: Infinity
   jumpHeight: 2
   intentionToJump: 0
-  moveVector: {x: 0, y: 0}
+  moveDirection: {x: 0, y: 0}
+  lookRadians: 0
 --- !u!114 &5621763114958034421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,37 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 0.33
-  topAngularSpeed: 360
   pelletPrefab: {fileID: 4310244522467198719, guid: dd68e3a01e8bf56469a14f95a2931f42,
     type: 3}
-  shootDirection: {x: 0, y: 0, z: 0}
---- !u!114 &3584596396295729971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5378485853423841408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01866e4223424a48acab2e2909bd320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitpoints: 3
-  shotsPerSecond: 3
-  characterSpeed: 7
---- !u!114 &7076643050519333868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5378485853423841408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d139ed7d0d6d710498586dd3c5476cda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4165181393014522720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,10 +103,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoints: 3
   hitImmunityTime: 1
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7076643050519333868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378485853423841408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d139ed7d0d6d710498586dd3c5476cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8109463116480471525
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +132,7 @@ GameObject:
   - component: {fileID: 7479763432610389091}
   - component: {fileID: 4626882282500040001}
   - component: {fileID: 9015672695051616392}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

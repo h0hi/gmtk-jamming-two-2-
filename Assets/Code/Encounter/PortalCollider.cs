@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PortalCollider : MonoBehaviour, IEncounterEventListener
@@ -11,6 +12,9 @@ public class PortalCollider : MonoBehaviour, IEncounterEventListener
         if (eventType == EncounterEventType.Load) {
             portals.Add(this);
         }
+        else if (eventType == EncounterEventType.End) {
+            portals.Remove(this);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -18,11 +22,8 @@ public class PortalCollider : MonoBehaviour, IEncounterEventListener
 
             if (portals.Count == 1) return;
 
-            foreach (var item in portals) {
-                if (item != this) 
-                    item.SpawnDuplicate(other.transform.parent.gameObject);
-            }
-            Consume(other.transform.parent.gameObject);
+            var randomlyChosenPortal = portals.ElementAt(Random.Range(0, portals.Count));
+            other.transform.parent.position = randomlyChosenPortal.transform.position;
         }
     }
 
@@ -30,6 +31,7 @@ public class PortalCollider : MonoBehaviour, IEncounterEventListener
         ignoredColliders.Remove(other);
     }
 
+    /*
     private void SpawnDuplicate(GameObject original) {
         var duplicate = Instantiate(original, transform.position, original.transform.rotation, original.transform.parent);
         foreach (var item in duplicate.GetComponentsInChildren<Collider>()) {
@@ -40,4 +42,5 @@ public class PortalCollider : MonoBehaviour, IEncounterEventListener
     private void Consume(GameObject original) {
         Destroy(original);
     }
+    */
 }

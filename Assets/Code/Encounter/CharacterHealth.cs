@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharacterHealth : MonoBehaviour, IEncounterEventListener
+public class CharacterHealth : MonoBehaviour
 {
-    private int hitPoints;
+    [SerializeField] private int hitPoints;
     public int HitPoints { get { return hitPoints; } }
     [SerializeField] private float hitImmunityTime;
     public UnityEvent onDeath; 
@@ -23,15 +23,5 @@ public class CharacterHealth : MonoBehaviour, IEncounterEventListener
 
     public void DestroyGameObject() {
         Destroy(gameObject);
-    }
-
-    public void OnEncounterEvent(EncounterEventType eventType)
-    {
-        if (eventType == EncounterEventType.Begin) {
-            var stats = GetComponent<CharacterStats>();
-            if (stats) {
-                hitPoints = stats.GetHP();
-            }
-        }
     }
 }

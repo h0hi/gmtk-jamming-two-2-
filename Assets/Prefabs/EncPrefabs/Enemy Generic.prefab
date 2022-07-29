@@ -107,7 +107,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8168627941083618062}
   - component: {fileID: 5995973010911250961}
-  - component: {fileID: 7035930355489838256}
   - component: {fileID: 2582927042672673117}
   - component: {fileID: 2236733178474403388}
   - component: {fileID: 3482836040588007169}
@@ -151,21 +150,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7035930355489838256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7007321382348589136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01866e4223424a48acab2e2909bd320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitpoints: 1
-  shotsPerSecond: 1
-  characterSpeed: 3
 --- !u!114 &2582927042672673117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,14 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010097badfbc4bd4ca85a1700f4c17f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topSpeed: 3
+  topSpeed: 1
   accelerationTime: 0
   decelerationTime: 0
+  topAngularSpeed: 90
   jumpAscendTime: 0.4
-  jumpFallTime: 0.2
+  jumpFallTime: Infinity
   jumpHeight: 2
   intentionToJump: 0
-  moveVector: {x: 0, y: 0}
+  moveDirection: {x: 0, y: 0}
+  lookRadians: 0
 --- !u!114 &2236733178474403388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,10 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletSpawnDistance: 1
   cooldown: 1
-  topAngularSpeed: 45
   pelletPrefab: {fileID: 6413001331616385367, guid: 3ea227259645d6a4992dbbfea725980c,
     type: 3}
-  shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &3482836040588007169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2460751b60ccfd4f94644749e1ac74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoints: 3
   hitImmunityTime: 0
   onDeath:
     m_PersistentCalls:

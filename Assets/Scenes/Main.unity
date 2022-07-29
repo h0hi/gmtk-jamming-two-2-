@@ -2338,7 +2338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encounterBundleNames:
-  - squareoff
   - shieldambush
   loadedEncounter: {fileID: 0}
 --- !u!1 &1125139773
