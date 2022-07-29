@@ -22,8 +22,16 @@ public class PortalCollider : MonoBehaviour, IEncounterEventListener
 
             if (portals.Count == 1) return;
 
-            var randomlyChosenPortal = portals.ElementAt(Random.Range(0, portals.Count));
+            var randomlyChosenPortal = this;
+            while (randomlyChosenPortal == this) {
+                Random.InitState(System.DateTime.Now.GetHashCode());
+                randomlyChosenPortal = portals.ElementAt(Random.Range(0, portals.Count));
+            }
+            
             other.transform.parent.position = randomlyChosenPortal.transform.position;
+            foreach (var item in other.transform.parent.GetComponentsInChildren<Collider>()) {
+                randomlyChosenPortal.ignoredColliders.Add(item);
+            }
         }
     }
 

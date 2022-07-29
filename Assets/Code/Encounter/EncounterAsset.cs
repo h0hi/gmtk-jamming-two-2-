@@ -49,7 +49,10 @@ public class EncounterAsset : MonoBehaviour, ITransitionPassenger<float>
         }
     }
 
-    private void ExitEncounter() => onEncounterFinished.Invoke();
+    private void ExitEncounter() {
+        AnnounceEncounterEvent(EncounterEventType.End);
+        onEncounterFinished.Invoke();
+    } 
 
     public float GetTransitionValue()
     {
