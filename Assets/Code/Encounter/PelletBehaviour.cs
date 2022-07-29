@@ -10,11 +10,13 @@ public class PelletBehaviour : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Shielded")) return;
-        var characterHealth = other.GetComponentInParent<CharacterHealth>();
-        if (characterHealth) {
-            characterHealth.Damage();
+        if (!other.gameObject.CompareTag("Shielded")) {
+            var characterHealth = other.GetComponentInParent<CharacterHealth>();
+            if (characterHealth) {
+                characterHealth.Damage();
+            }
         }
+        
         if (!other.isTrigger) {
             Evaporate();
         }
