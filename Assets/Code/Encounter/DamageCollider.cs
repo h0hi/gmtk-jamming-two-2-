@@ -6,7 +6,7 @@ public class DamageCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         var health = collision.gameObject.GetComponent<CharacterHealth>();
-        if (health) {
+        if (health && !collision.collider.gameObject.CompareTag("Shielded")) {
             health.Damage();
         }
 
