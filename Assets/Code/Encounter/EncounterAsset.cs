@@ -23,11 +23,19 @@ public class EncounterAsset : MonoBehaviour, ITransitionPassenger<float>
             threatCount++;
             threat.gameObject.GetComponent<CharacterHealth>().onDeath.AddListener(ThreatEliminated);
         }
+        foreach (var threat in GetComponentsInChildren<RandomEnemyDriver>()) {
+            threatCount++;
+            threat.gameObject.GetComponent<CharacterHealth>().onDeath.AddListener(ThreatEliminated);
+        }
     }
 
     public void Begin() {
         transform.localPosition = Vector3.zero;
         AnnounceEncounterEvent(EncounterEventType.Begin);
+
+        if (threatCount == 0) {
+            Invoke(nameof(ExitEncounter), 5f);
+        }
     }
 
     private void AnnounceEncounterEvent(EncounterEventType eventType) {

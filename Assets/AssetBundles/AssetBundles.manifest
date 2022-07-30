@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3280696788
+CRC: 2333142328
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -27,3 +27,7 @@ AssetBundleManifest:
     Info_6:
       Name: die
       Dependencies: {}
+    Info_7:
+      Name: encounters/basic
+      Dependencies:
+        Dependency_0: encounterassets
