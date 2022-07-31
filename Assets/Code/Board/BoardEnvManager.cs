@@ -78,8 +78,14 @@ public class BoardEnvManager : MonoBehaviour
 
     private IEnumerator DoPlayerHops(int playerId, int startPoint, int hops, System.Action callback) {
         for (int h = 0; h < hops; h++) {
-            var a = graph.GetPointAtDistance(startPoint + h);
-            var b = graph.GetPointAtDistance(startPoint + h + 1);
+            Vector3 a, b;
+            try {
+                a = graph.GetPointAtDistance(startPoint + h);
+                b = graph.GetPointAtDistance(startPoint + h + 1);
+            } catch (System.ArgumentOutOfRangeException _) {
+                break;
+            }
+
             yield return DoPlayerHop(playerId, a, b);
             playerLocation[playerId] = (startPoint + h + 1) % graph.Length;
         }
