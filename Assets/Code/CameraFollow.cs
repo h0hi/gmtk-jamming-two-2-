@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour, ITransitionPassenger<Vector3>
+public class CameraFollow : MonoBehaviour, ITransitionPassenger<CameraFollow.CameraPositionRotation>
 {
     public bool lockRotationX;
     public bool lockRotationY;
@@ -127,11 +125,44 @@ public class CameraFollow : MonoBehaviour, ITransitionPassenger<Vector3>
         return direction.x > 0 ? angle : 360 - angle;
     }
 
-    public Vector3 GetTransitionValue() => new Vector3(rotationX, rotationY, currentDistance);
-    public void SetTransitionValue(Vector3 value) {
-        rotationX = value.x;
-        rotationY = value.y;
-        config.defaultDistance = value.z;
-        currentDistance = value.z;
+    public CameraPositionRotation GetTransitionValue() => new (
+        new Vector3(rotationX, rotationY, currentDistance),
+        cameraFollowTransform.position
+    );
+    public void SetTransitionValue(CameraPositionRotation value) {
+        rotationX = value.localPositionSpherical.x;
+        rotationY = value.localPositionSpherical.y;
+        currentDistance = value.localPositionSpherical.z;
+        config.defaultDistance = currentDistance;
+        
+        transform.position = value.lookAtPosition - Quaternion.Euler(rotationX, rotationY, 0) * Vector3.forward * currentDistance;
+        transform.LookAt(value.lookAtPosition);
+    }
+
+    public void SetCameraFollowTransform(Transform newFocus) {
+        cameraFollowTransform = newFocus;
+        focusPoint = newFocus.position;
+        focusPointLastFrame = newFocus.position;
+    }
+
+    public class CameraPositionRotation {
+        public Vector3 localPositionSpherical;
+        public Vector3 lookAtPosition;
+
+        public CameraPositionRotation(Vector3 localPositionSpherical, Vector3 lookAtPosition) {
+            this.localPositionSpherical = localPositionSpherical;
+            this.lookAtPosition = lookAtPosition;
+        }
+
+        public static CameraPositionRotation Lerp(CameraPositionRotation a, CameraPositionRotation b, float f) {
+            return new CameraPositionRotation(
+                new Vector3(
+                    Mathf.LerpAngle(a.localPositionSpherical.x, b.localPositionSpherical.x, f), 
+                    Mathf.LerpAngle(a.localPositionSpherical.y, b.localPositionSpherical.y, f), 
+                    Mathf.Lerp(a.localPositionSpherical.z, b.localPositionSpherical.z, f)
+                ), 
+                Vector3.Lerp(a.lookAtPosition, b.lookAtPosition, f)
+            );
+        }
     }
 }

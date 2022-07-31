@@ -961,7 +961,7 @@ MonoBehaviour:
     initialAngles: {x: 80, y: 45}
     rotationSpeed: 450
     cameraDistanceDelta: 5
-    focusRadius: 0.4
+    focusRadius: 1.5
     focusCentering: 0.7
     alignDelay: 3
     alignSmoothRange: 45
@@ -1535,8 +1535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b10fef296560b49a20f0259f854713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHopTime: 0.25
-  playerHopHeight: 2
+  playerHopTime: 0.75
+  playerHopHeight: 1.62
   boardDieColor: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 1}
   onTurnCompleted:
     m_PersistentCalls:

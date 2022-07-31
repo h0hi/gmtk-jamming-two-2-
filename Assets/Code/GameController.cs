@@ -47,11 +47,13 @@ public class GameController : MonoBehaviour
     }
 
     private void SetCameraBoard() {
+        cameraControl.enabled = false;
+        var playerPipTransform = boardManager.GetPlayerPip(0).transform;
         TransitionDriver.InitiateTransition(
             transitionCurve,
-            new Vector3(30, 0, 17),
+            new CameraFollow.CameraPositionRotation(new Vector3(30, 45, 7), playerPipTransform.position),
             cameraControl,
-            null
+            EnableCamera
         );
         TransitionDriver.InitiateTransition(
             transitionCurve,
@@ -59,16 +61,19 @@ public class GameController : MonoBehaviour
             LightingControl.main,
             null
         );
+
+        cameraControl.SetCameraFollowTransform(playerPipTransform);
     }
     private void SetCameraEncounter(EncounterAsset encounter) {
 
+        cameraControl.enabled = false;
         var camAngles = new Vector3(80, -45);
         camAngles.z = CameraFollow.CalculateMinDistanceForCamera(camAngles, encounter.GetBoardSize());
         TransitionDriver.InitiateTransition(
             transitionCurve,
-            camAngles,
+            new CameraFollow.CameraPositionRotation(camAngles, Vector3.zero),
             cameraControl,
-            null
+            EnableCamera
         );
 
         TransitionDriver.InitiateTransition(
@@ -77,20 +82,11 @@ public class GameController : MonoBehaviour
             LightingControl.main,
             null
         );
+
+        cameraControl.SetCameraFollowTransform(transform);
     }
 
-    private void SetCameraDiceThrow() {
-        TransitionDriver.InitiateTransition(
-            transitionCurve,
-            new Vector3(80, 0, 7),
-            cameraControl,
-            null
-        );
-        TransitionDriver.InitiateTransition(
-            transitionCurve,
-            new LightingData(7700, 0.5f, 0.33f),
-            LightingControl.main,
-            null
-        );
+    private void EnableCamera() {
+        cameraControl.enabled = true;
     }
 }

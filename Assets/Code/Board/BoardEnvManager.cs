@@ -51,6 +51,8 @@ public class BoardEnvManager : MonoBehaviour
         return graph.GetTransformAtDistance(playerLocation[id]).GetComponent<PointOfInterestData>();
     }
 
+    public GameObject GetPlayerPip(int id) => playerPips[id];
+
     private void OnUserTurnEnd() {
         onTurnCompleted.Invoke();
         boardToEncounterTransitionDriver = new BoardToEncounterTransitionDriver(graph, playerLocation[PlayerWhoseTurnItIsNow]);
