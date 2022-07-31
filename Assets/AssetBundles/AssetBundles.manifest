@@ -1,33 +1,17 @@
 ManifestFileVersion: 0
-CRC: 2333142328
+CRC: 4244816205
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: encounterassets
       Dependencies: {}
     Info_1:
-      Name: encounters/squareoff
-      Dependencies:
-        Dependency_0: encounterassets
-    Info_2:
-      Name: encounters/shieldambush
-      Dependencies:
-        Dependency_0: encounterassets
-    Info_3:
-      Name: encounters/siege
-      Dependencies:
-        Dependency_0: encounterassets
-    Info_4:
-      Name: encounters/turretgate
-      Dependencies:
-        Dependency_0: encounterassets
-    Info_5:
       Name: boardassets
       Dependencies: {}
-    Info_6:
+    Info_2:
       Name: die
       Dependencies: {}
-    Info_7:
-      Name: encounters/basic
+    Info_3:
+      Name: encounters/sampleencounter
       Dependencies:
         Dependency_0: encounterassets

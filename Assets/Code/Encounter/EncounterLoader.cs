@@ -3,30 +3,36 @@ using UnityEngine;
 
 public class EncounterLoader : MonoBehaviour
 {
-    [SerializeField] private string[] encounterBundleNames;
-    private System.Random rnd;
+    public static EncounterLoader instance; 
     private AssetBundle encounterBundle;
+    private AssetBundle encounterAssetBundle;
+    private string encounterAssetBundlesFolder;
     [HideInInspector] public GameObject loadedEncounter;
 
-    private void Start() {
-        AssetBundle.LoadFromFile(Path.Join(Application.dataPath, "AssetBundles", "encounterassets"));
+    private void Awake() {
+        if (instance != null) {
+            Destroy(this);
+        }
+        instance = this;
     }
 
-    public void LoadEncounter() {
-        rnd = new System.Random(System.DateTime.Now.GetHashCode());
-        var name = encounterBundleNames[rnd.Next(encounterBundleNames.Length)];
-        var encounterAssetBundlesFolder = Path.Join(Application.dataPath, "AssetBundles", "encounters");
-        encounterBundle = AssetBundle.LoadFromFile(Path.Join(encounterAssetBundlesFolder, name));
+    private void Start() {
+        encounterAssetBundlesFolder = Path.Join(Application.dataPath, "AssetBundles", "encounters");
+        encounterAssetBundle = AssetBundle.LoadFromFile(Path.Join(Application.dataPath, "AssetBundles", "encounterassets"));
+    }
 
-        var prefab = encounterBundle.LoadAsset<GameObject>(name);
+    public void LoadEncounter(string environmentName, EnemyWaves waveAsset) {
+        encounterBundle = AssetBundle.LoadFromFile(Path.Join(encounterAssetBundlesFolder, environmentName));
+
+        var prefab = encounterBundle.LoadAsset<GameObject>(environmentName);
         if (prefab == null) {
-            prefab = encounterBundle.LoadAsset<GameObject>(name + " Variant");
+            prefab = encounterBundle.LoadAsset<GameObject>(environmentName + " Variant");
         }
         if (prefab == null) {
-            Debug.LogError("Could not find encounter object in bundle! Make sure the encounter parent has the bundle\'s name");
+            Debug.LogError("Could not find object " + environmentName + " in bundle! Make sure the encounter parent has the bundle\'s name");
         }
         loadedEncounter = Instantiate(prefab, transform);
-        loadedEncounter.GetComponent<EncounterAsset>().Load();
+        loadedEncounter.GetComponent<EncounterAsset>().Load(waveAsset);
     }
 
     public void UnloadEncounter() {
@@ -40,4 +46,6 @@ public class EncounterLoader : MonoBehaviour
                 Destroy(pellet.gameObject);
         }
     }
+
+    public GameObject GetEncounterPrefab(string name) => encounterAssetBundle.LoadAsset<GameObject>(name);
 }

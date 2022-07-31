@@ -22,13 +22,14 @@ public class GameController : MonoBehaviour
         encounterLoader = GetComponentInChildren<EncounterLoader>();
         cameraControl = FindObjectOfType<CameraFollow>();
 
-        boardManager.NextTurn();
+        boardManager.AdvanceTurn();
         SetCameraBoard();
     }
 
     // persistent listener of BoardEnvController.onTurnCompleted
     public void TurnOverCallback() {
-        encounterLoader.LoadEncounter();
+        var poiData = boardManager.GetPointOfInterestForPlayer(boardManager.PlayerWhoseTurnItIsNow);
+        encounterLoader.LoadEncounter(poiData.environmentBundleName, poiData.waveAsset);
         SetCameraEncounter(encounterLoader.loadedEncounter.GetComponent<EncounterAsset>());
         Invoke(nameof(DiceThrowOverCallback), transitionCurve.keys[transitionCurve.length - 1].time);
     }
@@ -46,7 +47,12 @@ public class GameController : MonoBehaviour
     }
 
     private void SetCameraBoard() {
-        cameraControl.SetTransitionValue(new Vector3(30, 0, 17));
+        TransitionDriver.InitiateTransition(
+            transitionCurve,
+            new Vector3(30, 0, 17),
+            cameraControl,
+            null
+        );
         TransitionDriver.InitiateTransition(
             transitionCurve,
             new LightingData(5000, 2, 0),
@@ -58,21 +64,31 @@ public class GameController : MonoBehaviour
 
         var camAngles = new Vector3(80, -45);
         camAngles.z = CameraFollow.CalculateMinDistanceForCamera(camAngles, encounter.GetBoardSize());
-        cameraControl.SetTransitionValue(camAngles);
+        TransitionDriver.InitiateTransition(
+            transitionCurve,
+            camAngles,
+            cameraControl,
+            null
+        );
 
         TransitionDriver.InitiateTransition(
             transitionCurve,
-            new LightingData(6700, 1.5f, 0.33f),
+            new LightingData(7700, 0.2f, 0.33f),
             LightingControl.main,
             null
         );
     }
 
     private void SetCameraDiceThrow() {
-        cameraControl.SetTransitionValue(new Vector3(80, 0, 7));
         TransitionDriver.InitiateTransition(
             transitionCurve,
-            new LightingData(6700, 1.5f, 0.33f),
+            new Vector3(80, 0, 7),
+            cameraControl,
+            null
+        );
+        TransitionDriver.InitiateTransition(
+            transitionCurve,
+            new LightingData(7700, 0.5f, 0.33f),
             LightingControl.main,
             null
         );

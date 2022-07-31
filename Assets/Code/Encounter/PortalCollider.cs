@@ -37,6 +37,7 @@ public class PortalCollider : MonoBehaviour, IEncounterEventListener
                         portals.Remove(gatePairId);
                     }
                 }
+                portalColors = null;
                 break;
         }
     }

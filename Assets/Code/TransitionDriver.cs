@@ -40,6 +40,7 @@ public class TransitionDriver : MonoBehaviour
             yield return null;
         }
 
+        passenger.SetTransitionValue(end);
         callback?.Invoke();
     }
 }
