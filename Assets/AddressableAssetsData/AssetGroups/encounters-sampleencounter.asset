@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: encounters-sampleencounter
+  m_EditorClassIdentifier: 
+  m_GroupName: encounters-sampleencounter
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 57160606b912c0249a350d09a4bb34a7
+  m_SerializeEntries:
+  - m_GUID: 53b7a001e6a1f8248ab2c21cf0e3746f
+    m_Address: Assets/Prefabs/Encounters/SampleEncounter.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4d6e0d16bcd272f47b78382e2bec4e1d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 63ba95863bb3d9b4ba11ed079e0bd89e, type: 2}
+    - {fileID: 11400000, guid: 1cbe0b3d8dc6ac140bfaa771cc23730c, type: 2}

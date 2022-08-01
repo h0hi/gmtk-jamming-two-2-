@@ -64,8 +64,7 @@ public class BoardEnvManager : MonoBehaviour
     }
 
     private void AddPlayer() {
-        var boardAssetBundle = AssetBundle.LoadFromFile(System.IO.Path.Join(Application.dataPath, "AssetBundles", "boardassets"));
-        var playerPipPrefab = boardAssetBundle.LoadAsset<GameObject>("player_pip");
+        var playerPipPrefab = AssetLoader.LoadAsset<GameObject>("Assets/Prefabs/BoardPrefabs/player_pip.prefab");
         playerLocation.Add(0);
         playerPips.Add(Instantiate(playerPipPrefab, graph.GetStartingPosition(), Quaternion.identity, transform));
     }

@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: encounterassets
+  m_EditorClassIdentifier: 
+  m_GroupName: encounterassets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: baf1aaa702a01bc4d8013de101488f3d
+  m_SerializeEntries:
+  - m_GUID: e05c80e98240cf04a8980a01d591ec50
+    m_Address: Assets/Materials/EncBundle/Danger.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 94556886addaad849b89db69c671591b
+    m_Address: Assets/Materials/EncBundle/enemy 1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 35ee26e0f92b3604eb14feac39bd8092
+    m_Address: Assets/Materials/EncBundle/enemy.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 71f65dbbb98a1904d995c7a47d4ac14a
+    m_Address: Assets/Materials/EncBundle/lighter platform.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 238f8acc58d46bf4c9ceb2a2bc73ffff
+    m_Address: Assets/Materials/EncBundle/lines_texture.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 33129a6ca71cb754c985a2f5aa6ebb9f
+    m_Address: Assets/Materials/EncBundle/platform.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cd2aad3da63825e46abfee0e90b34db8
+    m_Address: Assets/Materials/EncBundle/player.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9230888dc17c8d34987b15510931956d
+    m_Address: Assets/Materials/EncBundle/portal.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 174899f81d055694ebae6dac5e4f4bc2
+    m_Address: Assets/Materials/EncBundle/Shield.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef755d91a9dee8841a700a332b89f52a
+    m_Address: Assets/Materials/EncBundle/shield_texture.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55cdee43f5792054b9b83eb5900ab73d
+    m_Address: Assets/Materials/EncBundle/tent.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9669ace880da9cd4282018e1ef37f690
+    m_Address: Assets/Prefabs/EncPrefabs/character.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ac63ecff4470714b9fa0750d20fd54c
+    m_Address: Assets/Prefabs/EncPrefabs/Damage Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0af27a9dd088eb9438809c7d83e58353
+    m_Address: Assets/Prefabs/EncPrefabs/Destructible Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ea227259645d6a4992dbbfea725980c
+    m_Address: Assets/Prefabs/EncPrefabs/Destructible Pellet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec422d2cb0ed7154c998d3dab6a7ef3d
+    m_Address: Assets/Prefabs/EncPrefabs/Force Shield.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc42bb59dbbc6d24fbcb2bca6c68ce4e
+    m_Address: Assets/Prefabs/EncPrefabs/Generic Enemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5c40bd3038fb1974d9d69b32bca6713c
+    m_Address: Assets/Prefabs/EncPrefabs/Indestructible Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c189edfbe46f2ae4da62fdf06594a909
+    m_Address: Assets/Prefabs/EncPrefabs/Indestructible Pellet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dd68e3a01e8bf56469a14f95a2931f42
+    m_Address: Assets/Prefabs/EncPrefabs/pellet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bf0efab8c371f0743bd46f1eece6f294
+    m_Address: Assets/Prefabs/EncPrefabs/Portal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0fb5d10818ecc2d4b88a09636f824d01
+    m_Address: Assets/Prefabs/EncPrefabs/Random Enemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1747da81ec808d14daff825568766669
+    m_Address: Assets/Prefabs/EncPrefabs/Shielded Enemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 350848b6ab5aaa348ba95ff383aa5397
+    m_Address: Assets/Prefabs/EncPrefabs/sword.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec0666316fa2bf842bdb32b43365cc72
+    m_Address: Assets/Prefabs/EncPrefabs/Tent.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 146a8235c9bb34e429a7040e96134258
+    m_Address: Assets/Prefabs/EncPrefabs/Turret Enemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4d6e0d16bcd272f47b78382e2bec4e1d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b9699c49a2335d64588db5cfc4984888, type: 2}
+    - {fileID: 11400000, guid: 77e353e9b931caf4bbd8d6b401252c0f, type: 2}

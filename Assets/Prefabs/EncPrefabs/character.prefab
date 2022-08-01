@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 5378485853423841412}
   - component: {fileID: 5378485853423841410}
   - component: {fileID: 5378485853423841415}
-  - component: {fileID: 5621763114958034421}
+  - component: {fileID: 3285603731842926957}
   - component: {fileID: 4165181393014522720}
   - component: {fileID: 7076643050519333868}
   m_Layer: 6
@@ -191,7 +191,7 @@ MonoBehaviour:
   intentionToJump: 0
   moveDirection: {x: 0, y: 0}
   lookRadians: 0
---- !u!114 &5621763114958034421
+--- !u!114 &3285603731842926957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,13 +200,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5378485853423841408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18723469cf75c144c94f2f964c085542, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b2fcf851b10e164d9a3130ee227f525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pelletSpawnDistance: 1
-  cooldown: 0.33
-  pelletPrefab: {fileID: 4310244522467198719, guid: dd68e3a01e8bf56469a14f95a2931f42,
+  swordPrefab: {fileID: 4991664962514947096, guid: 350848b6ab5aaa348ba95ff383aa5397,
     type: 3}
+  halfArcDegrees: 60
+  swingRadius: 0.8
+  swingDuration: 0.2
 --- !u!114 &4165181393014522720
 MonoBehaviour:
   m_ObjectHideFlags: 0

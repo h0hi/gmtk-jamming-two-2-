@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: boardassets
+  m_EditorClassIdentifier: 
+  m_GroupName: boardassets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f5980b7e7f522d44d9203ec016acae95
+  m_SerializeEntries:
+  - m_GUID: 31e6866de7d852a47a8d0f892666f85b
+    m_Address: Assets/Materials/BoardBundles/player_pip.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0df4164551abec341ab308dec909c6e5
+    m_Address: Assets/Prefabs/BoardPrefabs/board_point.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ce777147e79b9ac44887638212d1b599
+    m_Address: Assets/Prefabs/BoardPrefabs/player_pip.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4d6e0d16bcd272f47b78382e2bec4e1d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 90e58c79a93fcc74d8bf725cfff4d579, type: 2}
+    - {fileID: 11400000, guid: ea9d6b8a0bf49ab44af0ef9d37b36dbd, type: 2}

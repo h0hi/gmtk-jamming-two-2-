@@ -34,13 +34,18 @@ public class TransitionDriver : MonoBehaviour
         }
 
         while (Time.time - startTime < duration) {
+
+            if (passenger == null) {
+                break;
+            }
+
             var f = curve.Evaluate(Time.time - startTime);
             T value = (T) lerpMethod.Invoke(null, new object[] { start, end, f });
             passenger.SetTransitionValue(value);
             yield return null;
         }
 
-        passenger.SetTransitionValue(end);
+        passenger?.SetTransitionValue(end);
         callback?.Invoke();
     }
 }

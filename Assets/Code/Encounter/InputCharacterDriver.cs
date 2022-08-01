@@ -1,18 +1,18 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterControl))]
-[RequireComponent(typeof(CharacterGun))]
+[RequireComponent(typeof(CharacterSword))]
 public class InputCharacterDriver : MonoBehaviour
 {
     private CharacterControl movementDevice;
-    private CharacterGun gunDevice;
+    private CharacterSword swordDevice;
     private Transform camTransform;
 
     private void Start() {
         camTransform = Camera.main.transform;
         movementDevice = GetComponent<CharacterControl>();
         movementDevice.intentionToJump = false;
-        gunDevice = GetComponent<CharacterGun>();
+        swordDevice = GetComponent<CharacterSword>();
     }
 
     private void Update() {
@@ -31,7 +31,7 @@ public class InputCharacterDriver : MonoBehaviour
         movementDevice.lookRadians = Mathf.Atan2(dir.x, dir.z);
         
         if (Input.GetMouseButton(0)) {
-            gunDevice.TryShoot();   
+            swordDevice.DoSwing();   
         }
     }
 

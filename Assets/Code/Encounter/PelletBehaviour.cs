@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PelletBehaviour : MonoBehaviour
@@ -11,7 +9,7 @@ public class PelletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (!other.gameObject.CompareTag("Shielded")) {
-            var characterHealth = other.GetComponentInParent<CharacterHealth>();
+            var characterHealth = other.transform.parent.GetComponent<CharacterHealth>();
             if (characterHealth) {
                 characterHealth.Damage();
             }

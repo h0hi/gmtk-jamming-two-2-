@@ -1,8 +1,14 @@
-using System.IO;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public static class AssetLoader
 {
-    private const string Path2 = "AssetBundles";
-    public static string AssetBundlePath => Path.Join(Application.dataPath, Path2);
+    public static TObject LoadAsset<TObject> (string address) where TObject : Object {
+        var handle = Addressables.LoadAssetAsync<TObject>(address);
+        return handle.WaitForCompletion();
+    }
+
+    public static void UnloadAsset<TObject> (TObject genericObject) {
+        Addressables.Release(genericObject);
+    }
 }
