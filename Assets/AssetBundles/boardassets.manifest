@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3772380278
+CRC: 826050519
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6af4245920b806e9fef4c6d5f1bd1538
+    Hash: faa4e19de179ad32bc7b34561282a4c3
   TypeTreeHash:
     serializedVersion: 2
     Hash: 85bf5f056651000148201bde7efb3d05
@@ -31,6 +31,7 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Materials/BoardBundles/player_pip.mat
 - Assets/Prefabs/BoardPrefabs/board_point.prefab
 - Assets/Prefabs/BoardPrefabs/player_pip.prefab
 Dependencies: []

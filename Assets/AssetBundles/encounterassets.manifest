@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3813539574
+CRC: 108847299
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 57b2b8b3b5a074588a59d7d0fa7efec5
+    Hash: c5d5588c04d62eae849a083059523d69
   TypeTreeHash:
     serializedVersion: 2
     Hash: 7267c3a593a4c2f634babda398bbcf88
@@ -73,18 +73,30 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.UnityEvent
 Assets:
+- Assets/Materials/EncBundles/lines_texture.png
+- Assets/Materials/EncBundles/platform.mat
 - Assets/Prefabs/EncPrefabs/Generic Enemy.prefab
 - Assets/Prefabs/EncPrefabs/Turret Enemy.prefab
 - Assets/Prefabs/EncPrefabs/Random Enemy.prefab
-- Assets/Prefabs/EncPrefabs/pellet.prefab
+- Assets/Materials/EncBundles/player.mat
+- Assets/Materials/EncBundles/portal.mat
 - Assets/Prefabs/EncPrefabs/Indestructible Cube.prefab
+- Assets/Prefabs/EncPrefabs/pellet.prefab
+- Assets/Materials/EncBundles/enemy 1.mat
+- Assets/Materials/EncBundles/tent.mat
 - Assets/Prefabs/EncPrefabs/Indestructible Pellet.prefab
 - Assets/Prefabs/EncPrefabs/character.prefab
+- Assets/Materials/EncBundles/Shield.mat
 - Assets/Prefabs/EncPrefabs/Destructible Cube.prefab
+- Assets/Materials/EncBundles/Danger.mat
+- Assets/Materials/EncBundles/lighter platform.mat
 - Assets/Prefabs/EncPrefabs/Force Shield.prefab
 - Assets/Prefabs/EncPrefabs/Shielded Enemy.prefab
+- Assets/Materials/EncBundles/shield_texture.png
 - Assets/Prefabs/EncPrefabs/Portal.prefab
 - Assets/Prefabs/EncPrefabs/Destructible Pellet.prefab
+- Assets/Materials/EncBundles/enemy.mat
 - Assets/Prefabs/EncPrefabs/Tent.prefab
 - Assets/Prefabs/EncPrefabs/Damage Cube.prefab
-Dependencies: []
+Dependencies:
+- C:/Users/eterna dark/Documents/GitHub/gmtk-jamming-two-2-/Assets/AssetBundles/die

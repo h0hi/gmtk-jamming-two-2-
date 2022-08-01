@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(LineRenderer))]
 public class BoardEnvManager : MonoBehaviour
 {
     [SerializeField] private float playerHopTime;

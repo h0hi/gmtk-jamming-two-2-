@@ -23,7 +23,7 @@ public class DieThrower : MonoBehaviour
 
     private void Start() {
         var dieAssetBundle = AssetBundle.LoadFromFile(System.IO.Path.Join(Application.dataPath, "AssetBundles", "die"));
-        d6prefab = dieAssetBundle.LoadAsset<GameObject>("die");
+        d6prefab = dieAssetBundle.LoadAsset<GameObject>("die.prefab");
     }
 
     public void ThrowD6(Vector3 position, Vector3 throwDirection, UnityAction<int> callback, Color color) {

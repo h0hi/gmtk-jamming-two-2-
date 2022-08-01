@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1489439195
+CRC: 2429237404
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2e77face3fe480ed1ecd9d4a64e3dadb
+    Hash: 24c29b7df5455d68e1fc80d42bc2baac
   TypeTreeHash:
     serializedVersion: 2
     Hash: 084181e2924082ee5d621b00dd2734cc
@@ -39,5 +39,8 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.UnityEvent`1[System.Int32]
 Assets:
+- Assets/Materials/dice_texture.png
+- Assets/Models/DIE.fbx
+- Assets/Materials/dice_texture.mat
 - Assets/Prefabs/die.prefab
 Dependencies: []

@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 1132348979
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6cc19470ef059322b04cf7be967ad5c5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 82515b3694a1e5beae009c48c1198c34
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Models/Materials/lines_texture.png
+- Assets/Models/Materials/platform.mat
+- Assets/Models/Materials/platform 1.mat
+- Assets/Models/Materials/dice_texture.png
+- Assets/Models/Materials/player.mat
+- Assets/Models/Materials/portal.mat
+- Assets/Models/Materials/enemy 1.mat
+- Assets/Models/Materials/tent.mat
+- Assets/Models/Materials/Shield.mat
+- Assets/Models/Materials/Danger.mat
+- Assets/Models/Materials/lighter platform.mat
+- Assets/Models/Materials/dice_texture.mat
+- Assets/Models/Materials/shield_texture.png
+- Assets/Models/Materials/board tile.mat
+- Assets/Models/Materials/darker_red.mat
+- Assets/Models/Materials/enemy.mat
+Dependencies: []
