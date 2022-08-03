@@ -16,7 +16,15 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 13b9d8b94ebcfbe4492fb4d130761268
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 840f20a22ea11c64ca00fb36059d1427
+    m_Address: Assets/Prefabs/EncPrefabs/Frog Enemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ad32d0021b05d2043b252eb77402e641
+    m_Address: Assets/Prefabs/EncPrefabs/Frog Shockwave.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4d6e0d16bcd272f47b78382e2bec4e1d, type: 2}
   m_SchemaSet:

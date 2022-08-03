@@ -46,6 +46,7 @@ public class CharacterControl : MonoBehaviour, IEncounterEventListener
 
     private void FixedUpdate() {
         HorizontalMove();
+        HandleJump();
     }
 
     private void HorizontalMove() {
@@ -106,4 +107,6 @@ public class CharacterControl : MonoBehaviour, IEncounterEventListener
                 break;
         }
     }
+
+    public float GetJumpDuration() => jumpAscendTime + jumpFallTime;
 }

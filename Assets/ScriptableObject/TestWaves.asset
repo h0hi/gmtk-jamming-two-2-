@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - enemyPrefabNames:
-    - Generic Enemy
+    - Frog Enemy
   - enemyPrefabNames:
     - Generic Enemy
     - Generic Enemy

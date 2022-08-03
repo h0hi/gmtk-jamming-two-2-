@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    private Material mat;
-
     private void OnTriggerEnter(Collider other) {
         var health = other.transform.parent.GetComponent<CharacterHealth>();
         if (health && !other.gameObject.CompareTag("Shielded")) {
@@ -13,16 +11,7 @@ public class DamageCollider : MonoBehaviour
         var rb = other.transform.parent.GetComponent<Rigidbody>();
         if (rb) {
             var direction = (other.transform.position - transform.position).normalized;
-            rb.AddForce(direction * 100, ForceMode.Impulse);
+            rb.AddForce(direction * 10, ForceMode.VelocityChange);
         }
-    }
-
-    private void Start() {
-        mat = GetComponent<MeshRenderer>().material;
-    }
-
-    private void Update() {
-        var t = Time.time * 0.25f;
-        mat.mainTextureOffset = new Vector2(t, -t);
     }
 }
